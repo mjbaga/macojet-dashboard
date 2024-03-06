@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 
 class HeadingEntry extends Component
 {
+    public $classes;
     /**
      * Create a new component instance.
      */
@@ -15,7 +16,7 @@ class HeadingEntry extends Component
         public array $headings = []
     )
     {
-        //
+        $this->classes = 'grid-cols-' . count($headings);
     }
 
     /**

@@ -22,7 +22,7 @@ class BoarderController extends Controller
      */
     public function create()
     {
-        //
+        return view('boarders.create');
     }
 
     /**

@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .section-heading {
+        @apply font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight;
+    }
+
+    .input-text {
+        @apply w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300
+    }
+}
