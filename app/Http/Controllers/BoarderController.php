@@ -15,7 +15,7 @@ class BoarderController extends Controller
     {
         // dd(Boarder::paginate(10));
 
-        return view('boarders.index', ['boarders' => Boarder::paginate(10)]);
+        return view('boarders.index', ['boarders' => Boarder::paginate(50)]);
     }
 
     /**
@@ -31,11 +31,8 @@ class BoarderController extends Controller
      */
     public function store(BoarderRequest $request)
     {
-        // $this->authorize('create', Boarder::class);
-        
-
         $file = $request->file('profile_picture');
-        $path = $file->store('profile_pics', 'private');
+        $path = $file->store('profile_pics', 'public');
 
         $validatedData = [
             ...$request->validated(),
@@ -60,17 +57,29 @@ class BoarderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Boarder $boarder)
     {
-        //
+        return view('boarders.edit', compact('boarder'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BoarderRequest $request, Boarder $boarder)
     {
-        //
+        $validatedData = $request->validated();
+
+        if($request->file('profile_picture')) {
+            $file = $request->file('profile_picture');
+            $path = $file->store('profile_pics', 'private');
+
+            $validatedData['profile_pic'] = $path;
+        }
+
+        $boarder->update($validatedData); 
+
+        return redirect()->back()
+            ->with('success', 'Successfully edited boarder!');
     }
 
     /**

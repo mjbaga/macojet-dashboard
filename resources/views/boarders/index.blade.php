@@ -19,8 +19,8 @@
                 <div>{{ $boarder->first_name }} {{ $boarder->last_name }}</div>
                 <div>{{ $boarder->email }}</div>
                 <div>{{ $boarder->updated_at->diffForHumans() }}</div>
-                <div>
-                    <button>Edit</button>
+                <div class="flex gap-2">
+                    <x-link-button :href="route('boarders.edit', $boarder->id)">Edit</x-link-button>
                     <button>Delete</button>
                 </div>
             </x-row-entry>
