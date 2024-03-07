@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BoarderRequest;
 use App\Models\Boarder;
 use Illuminate\Http\Request;
 
@@ -28,9 +29,24 @@ class BoarderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BoarderRequest $request)
     {
-        //
+        // $this->authorize('create', Boarder::class);
+        
+
+        $file = $request->file('profile_picture');
+        $path = $file->store('profile_pics', 'private');
+
+        $validatedData = [
+            ...$request->validated(),
+            'profile_pic' => $path
+        ];
+
+        Boarder::create($validatedData); 
+
+        return redirect()->route('boarders.index')
+            ->with('success', 'Successfully added new boarder!');
+        
     }
 
     /**
