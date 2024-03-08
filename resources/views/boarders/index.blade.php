@@ -1,16 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="flex justify-between">
-            <h2 class="section-heading">
-                Boarders
-            </h2>
-            <div class="actions">
-                <x-link-button :href="route('boarders.create')">
-                    Add New Boarder
-                </x-link-button>
-            </div>
-        </div>
-    </x-slot>
+    <x-page-heading :title="'Boarders'" :actions="[['href' => 'boarders.create', 'title' => 'Create New Boarder']]" />
 
     <x-content-wrap class="max-w-7xl">
         <x-heading-entry :headings="['Name', 'Email', 'Last Updated', 'Actions']" />

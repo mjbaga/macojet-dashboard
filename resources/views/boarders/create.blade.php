@@ -1,11 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="flex justify-between">
-            <h2 class="section-heading">
-                Add a new boarder
-            </h2>
-        </div>
-    </x-slot>
+    <x-page-heading :title="'Create New Boarder'" />
 
     <x-content-wrap class="max-w-3xl">
         <form class="flex flex-col" action="{{ route('boarders.store') }}" method="POST" enctype="multipart/form-data">

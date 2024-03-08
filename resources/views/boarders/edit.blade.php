@@ -1,11 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="flex justify-between">
-            <h2 class="section-heading">
-                Edit boarder {{ $boarder->fullName() }}
-            </h2>
-        </div>
-    </x-slot>
+    <x-page-heading :title="'Boarders'" />
 
     <x-content-wrap class="max-w-3xl">
         <form class="flex flex-col" action="{{ route('boarders.update', $boarder) }}" method="POST"

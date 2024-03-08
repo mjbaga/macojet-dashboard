@@ -1,8 +1,9 @@
 <?php
 
+use Tabuna\Breadcrumbs\Trail;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoarderController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +22,41 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard')
+    ->breadcrumbs(fn (Trail $trail) =>
+        $trail->push('Dashboard', route('dashboard'))
+    );
 
 Route::middleware('auth')->group(function () {
-    Route::resource('boarders', BoarderController::class);
+
+    Route::get('/boarders', [BoarderController::class, 'index'])
+        ->name('boarders.index')
+        ->breadcrumbs(fn (Trail $trail) => 
+            $trail
+                ->parent('dashboard')
+                ->push(__('Boarders'), route('boarders.index'))
+        );
+
+    Route::get('/boarders/create', [BoarderController::class, 'create'])
+        ->name('boarders.create')
+        ->breadcrumbs(fn (Trail $trail) => 
+            $trail
+                ->parent('dashboard')
+                ->push(__('Boarders'), route('boarders.index'))
+                ->push(__('New'), route('boarders.create'))
+        );
+
+    Route::get('/boarders/{boarder}/edit', [BoarderController::class, 'edit'])
+        ->name('boarders.edit')
+        ->breadcrumbs(fn (Trail $trail, $boarder) => 
+            $trail
+                ->parent('dashboard')
+                ->push(__('Boarders'), route('boarders.index'))
+                ->push(__('Edit'), route('boarders.edit', $boarder))
+        );
+
+    Route::resource('boarders', BoarderController::class)
+        ->except(['index', 'craete', 'edit', 'show']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
