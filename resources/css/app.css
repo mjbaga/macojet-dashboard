@@ -10,4 +10,12 @@
     .input-text {
         @apply w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300
     }
+
+    .tab {
+        @apply bg-gray-300 rounded-t-md px-8 py-4 text-center;
+    }
+
+    .tab-active {
+        @apply bg-white border-t-green-800 border-t-4;
+    }
 }
