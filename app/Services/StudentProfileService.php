@@ -10,16 +10,26 @@ use App\Http\Requests\BoarderRequest;
 
 class StudentProfileService implements ProfileInterface
 {
+    public $fields = [
+        'schedule_type' => 'required|string|max:255',
+        'vaccine' => 'required|string|max:255',
+        'home_on_weekends' => 'required|boolean'
+    ];
+
     public function store(BoarderRequest $request, Boarder $boarder)
     {
-        $profile = StudentProfile::create($request->safe()->only(['schedule_type', 'vaccine', 'home_on_weekends']));
+        $validatedData = $request->validate($this->fields);
+
+        $profile = StudentProfile::create($validatedData);
         $profile->boarder()->save($boarder);
     }
 
     public function update(BoarderRequest $request, Boarder $boarder)
     {
+        $validatedData = $request->validate($this->fields);
+
         $profile = StudentProfile::findOrFail($boarder->profileable_id);
-        $profile->update($request->safe()->only(['schedule_type', 'vaccine', 'home_on_weekends']));
+        $profile->update($validatedData);
     }
 
     public function destroy(string $id)

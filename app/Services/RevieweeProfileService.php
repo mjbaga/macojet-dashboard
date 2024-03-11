@@ -10,16 +10,25 @@ use App\Http\Requests\BoarderRequest;
 
 class RevieweeProfileService implements ProfileInterface
 {
+    public $fields = [
+        'review_center' => 'required|string|max:255',
+        'review_center_address' => 'nullable'
+    ];
+
     public function store(BoarderRequest $request, Boarder $boarder)
     {
-        $profile = RevieweeProfile::create($request->get('boarder')['profileable']);
+        $validatedData = $request->validate($this->fields);
+
+        $profile = RevieweeProfile::create($validatedData);
         $profile->boarder()->save($boarder);
     }
 
     public function update(BoarderRequest $request, Boarder $boarder)
     {
-        $profile = RevieweeProfile::find($boarder->profile_id);
-        $profile->update($request->get('boarder')['profileable']);
+        $validatedData = $request->validate($this->fields);
+
+        $profile = RevieweeProfile::find($boarder->profileable_id);
+        $profile->update($validatedData);
     }
 
     public function destroy(string $id)

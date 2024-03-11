@@ -28,8 +28,8 @@
 
                     <!-- Profile Type -->
                     <div class="mb-4">
-                        <x-input-label for="profile_type" :value="__('Profile Type')" />
-                        <x-select name="profile_type">
+                        <x-input-label :value="__('Profile Type')" />
+                        <x-select disabled>
                             @foreach (\App\Models\Boarder::$type as $type)
                                 <option value="{{ $type }}"
                                     {{ $type === $boarder->profile_type ? 'selected' : '' }}>
@@ -37,7 +37,9 @@
                                 </option>
                             @endforeach
                         </x-select>
-                        <x-input-error :messages="$errors->get('profile_type')" class="mt-2" />
+                        <p class="font-semibold italic text-xs pt-2 pl-2">
+                            Profile type cannot be changed.
+                        </p>
                     </div>
 
                     <!-- First Name -->
@@ -176,10 +178,10 @@
 
                 <div div class="grow flex-1" x-show="extra" x-transition>
                     @if ($boarder->profile_type === 'worker')
-                        <x-worker-info />
+                        <x-worker-info :boarder="$boarder" />
                     @elseif ($boarder->profile_type === 'reviewee')
-                        <x-reviewee-info />
-                    @else
+                        <x-reviewee-info :boarder="$boarder" />
+                    @elseif ($boarder->profile_type === 'student')
                         <x-student-info :boarder="$boarder" />
                     @endif
                 </div>

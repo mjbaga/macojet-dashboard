@@ -17,6 +17,9 @@
                         </option>
                     @endforeach
                 </x-select>
+                <p class="font-semibold italic text-xs pt-2 pl-2">
+                    Profile type cannot be changed once added.
+                </p>
                 <x-input-error :messages="$errors->get('profile_type')" class="mt-2" />
             </div>
 

@@ -86,11 +86,11 @@ class BoarderController extends Controller
         $profile = $this->getProfileService($boarder);
 
         $boarder->profileable ?
-    
+
             $pc->updateProfile( $profile, $boarder, $request ) :
 
             $pc->createProfile( $profile, $boarder, $request );
-        
+
 
         return redirect()->back()
             ->with('success', 'Successfully updated boarder!');

@@ -36,13 +36,10 @@ class BoarderRequest extends FormRequest
             'mother_contact' => 'required_with:name_of_mother|string|max:255|nullable',
             'name_of_guardian' => 'required_without_all:name_of_father,name_of_mother|string|max:255|nullable',
             'guardian_contact' => 'required_with:name_of_guardian|string|max:255|nullable',
-            'profile_type' => 'required|string|max:255',
+            // 'profile_type' => 'required|string|max:255',
             'profileable_type' => 'string|max:255|nullable',
             'profileable_id' => 'integer|nullable',
             'profile_picture' => 'image|mimes:jpg,jpeg,png|max:2048|nullable',
-            'schedule_type' => 'required|string|max:255',
-            'vaccine' => 'required|string|max:255',
-            'home_on_weekends' => 'required|boolean',
         ];
     }
 }
