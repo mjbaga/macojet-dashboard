@@ -1,5 +1,7 @@
 <div>
-    <h2 class="text-center my-4 text-xl font-bold text-gray-800">{{ Str::ucfirst($boarder->profile_type) }} Info</h2>
+    <h2 class="text-center my-4 text-xl font-bold text-gray-800">
+        {{ Str::ucfirst($boarder->profile_type) }} Info
+    </h2>
 
     @php
         $home = 0;

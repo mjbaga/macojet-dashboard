@@ -1,8 +1,13 @@
 <div>
+    <h2 class="text-center my-4 text-xl font-bold text-gray-800">
+        {{ Str::ucfirst($boarder->profile_type) }} Info
+    </h2>
+
     @php
         $reviewCenter = '';
         $reviewCenterAddress = '';
     @endphp
+
     <!-- Review Center -->
     <div class="mb-4">
         @if ($boarder->profileable)

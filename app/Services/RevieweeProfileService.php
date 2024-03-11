@@ -30,9 +30,4 @@ class RevieweeProfileService implements ProfileInterface
         $profile = RevieweeProfile::find($boarder->profileable_id);
         $profile->update($validatedData);
     }
-
-    public function destroy(string $id)
-    {
-        //
-    }
 }

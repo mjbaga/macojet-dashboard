@@ -177,7 +177,7 @@
 
 
                 <div div class="grow flex-1" x-show="extra" x-transition>
-                    @if ($boarder->profile_type === 'worker')
+                    @if ($boarder->profile_type === 'working')
                         <x-worker-info :boarder="$boarder" />
                     @elseif ($boarder->profile_type === 'reviewee')
                         <x-reviewee-info :boarder="$boarder" />

@@ -28,12 +28,7 @@ class StudentProfileService implements ProfileInterface
     {
         $validatedData = $request->validate($this->fields);
 
-        $profile = StudentProfile::findOrFail($boarder->profileable_id);
+        $profile = StudentProfile::find($boarder->profileable_id);
         $profile->update($validatedData);
-    }
-
-    public function destroy(string $id)
-    {
-        //
     }
 }
