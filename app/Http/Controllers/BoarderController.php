@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BoarderRequest;
 use App\Models\Boarder;
 use Illuminate\Http\Request;
+use App\Services\WorkerProfileService;
+use App\Services\StudentProfileService;
+use App\Services\RevieweeProfileService;
+use App\Http\Controllers\BoarderProfileController;
 
 class BoarderController extends Controller
 {
@@ -59,7 +63,7 @@ class BoarderController extends Controller
      */
     public function edit(Boarder $boarder)
     {
-        return view('boarders.edit', compact('boarder'));
+        return view('boarders.edit', ['boarder' => $boarder->load('profileable')]);
     }
 
     /**
@@ -76,10 +80,20 @@ class BoarderController extends Controller
             $validatedData['profile_pic'] = $path;
         }
 
-        $boarder->update($validatedData); 
+        $boarder->update($validatedData);
+
+        $pc = new BoarderProfileController();
+        $profile = $this->getProfileService($boarder);
+
+        $boarder->profileable ?
+    
+            $pc->updateProfile( $profile, $boarder, $request ) :
+
+            $pc->createProfile( $profile, $boarder, $request );
+        
 
         return redirect()->back()
-            ->with('success', 'Successfully edited boarder!');
+            ->with('success', 'Successfully updated boarder!');
     }
 
     /**
@@ -88,5 +102,17 @@ class BoarderController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getProfileService($boarder): WorkerProfileService|RevieweeProfileService|StudentProfileService
+    {
+        switch($boarder->profile_type) {
+            case 'working':
+                return new WorkerProfileService();
+            case 'reviewee':
+                return new RevieweeProfileService();
+            default:
+                return new StudentProfileService();
+        }
     }
 }

@@ -1,13 +1,18 @@
 <x-app-layout>
     <x-page-heading :title="'Boarders'" />
 
-    <div x-data="{ personal: true, contact: false }" class="py-10">
+    <div x-data="{ personal: true, contact: false, extra: false }" class="py-10">
 
         <div class="tabs max-w-2xl mx-auto">
             <button x-bind:class="personal ? 'tab-active' : ''" class="tab"
-                x-on:click="personal = true, contact = false ">Personal Info</button>
+                x-on:click="personal = true, contact = false, extra = false ">
+                Personal Info
+            </button>
             <button x-bind:class="contact ? 'tab-active' : ''" class="tab"
-                x-on:click="personal = false, contact = true ">Contact Info</button>
+                x-on:click="personal = false, contact = true, extra = false">Contact Info</button>
+            <button x-bind:class="extra ? 'tab-active' : ''" class="tab"
+                x-on:click="personal = false, contact = false, extra = true ">{{ Str::ucfirst($boarder->profile_type) }}
+                Info</button>
         </div>
 
         <x-content-wrap class="max-w-2xl py-0 sm:rounded-tl-none">
@@ -90,7 +95,7 @@
 
                 </div>
 
-                <div div class="grow flex-1" {{-- x-bind:class="contact ? 'block' : ''"  --}} x-show="contact" x-transition>
+                <div div class="grow flex-1" x-show="contact" x-transition>
 
                     <h2 class="text-center my-4 text-xl font-bold text-gray-800">Contact Info</h2>
 
@@ -169,12 +174,15 @@
                 </div>
 
 
-                {{-- <div class="flex w-full gap-16 justify-center">
-                <div>
-
+                <div div class="grow flex-1" x-show="extra" x-transition>
+                    @if ($boarder->profile_type === 'worker')
+                        <x-worker-info />
+                    @elseif ($boarder->profile_type === 'reviewee')
+                        <x-reviewee-info />
+                    @else
+                        <x-student-info :boarder="$boarder" />
+                    @endif
                 </div>
-                <div></div>
-            </div> --}}
 
                 <button
                     class="w-48 mx-auto rounded-md border border-transparent bg-green-500 px-2.5 py-1.5 text-center text-sm font-semibold text-white hover:text-green-500 shadow-sm hover:bg-green-200 ease-in duration-200 hover:border hover:border-green-500"

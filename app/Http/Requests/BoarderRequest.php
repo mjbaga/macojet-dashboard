@@ -39,7 +39,10 @@ class BoarderRequest extends FormRequest
             'profile_type' => 'required|string|max:255',
             'profileable_type' => 'string|max:255|nullable',
             'profileable_id' => 'integer|nullable',
-            'profile_picture' => 'image|mimes:jpg,jpeg,png|max:2048|nullable'
+            'profile_picture' => 'image|mimes:jpg,jpeg,png|max:2048|nullable',
+            'schedule_type' => 'required|string|max:255',
+            'vaccine' => 'required|string|max:255',
+            'home_on_weekends' => 'required|boolean',
         ];
     }
 }
