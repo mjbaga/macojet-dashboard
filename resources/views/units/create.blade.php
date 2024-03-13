@@ -1,3 +1,4 @@
+@section('page_title', 'Create Unit')
 <x-app-layout>
     <x-page-heading :title="'Create New Unit'" />
 

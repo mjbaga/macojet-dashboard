@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BoarderRequest;
 use App\Models\Boarder;
-use Illuminate\Http\Request;
 use App\Services\WorkerProfileService;
 use App\Services\StudentProfileService;
 use App\Services\RevieweeProfileService;
@@ -99,9 +98,11 @@ class BoarderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Boarder $boarder)
     {
-        //
+        // $boarder->delete();
+
+        return view('boarders.index', ['boarders' => Boarder::paginate(50)])->with('success', 'Successfully deleted boarder.');
     }
 
     public function getProfileService($boarder): WorkerProfileService|RevieweeProfileService|StudentProfileService

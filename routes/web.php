@@ -4,6 +4,7 @@ use Tabuna\Breadcrumbs\Trail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoarderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UnitController;
 
 /*
@@ -59,7 +60,37 @@ Route::middleware('auth')->group(function () {
     Route::resource('boarders', BoarderController::class)
         ->except(['index', 'create', 'edit', 'show']);
 
-    Route::resource('units', UnitController::class);
+    Route::get('/units', [UnitController::class, 'index'])
+        ->name('units.index')
+        ->breadcrumbs(fn (Trail $trail) => 
+            $trail
+                ->parent('dashboard')
+                ->push(__('Units'), route('units.index'))
+        );
+
+    Route::get('/units/create', [UnitController::class, 'create'])
+        ->name('units.create')
+        ->breadcrumbs(fn (Trail $trail) => 
+            $trail
+                ->parent('dashboard')
+                ->push(__('Units'), route('units.index'))
+                ->push(__('New'), route('units.create'))
+        );
+
+    Route::get('/units/{unit}/edit', [UnitController::class, 'edit'])
+        ->name('units.edit')
+        ->breadcrumbs(fn (Trail $trail, $unit) => 
+            $trail
+                ->parent('dashboard')
+                ->push(__('Units'), route('units.index'))
+                ->push(__('Edit'), route('units.edit', $unit))
+        );
+
+    Route::resource('units', UnitController::class)
+        ->except(['index', 'create', 'edit', 'show']);
+
+    Route::post('/units/{unit}/rooms', [RoomController::class, 'store'])
+        ->name('units.rooms.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

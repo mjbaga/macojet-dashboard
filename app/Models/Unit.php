@@ -22,4 +22,15 @@ class Unit extends Model
     {
         return $this->hasMany(Room::class);
     }
+
+    public function getTotalCapacityAttribute()
+    {
+        $capacity = 0;
+
+        foreach($this->rooms as $room) {
+            $capacity += $room->capacity;
+        }
+
+        return $capacity;
+    }
 }

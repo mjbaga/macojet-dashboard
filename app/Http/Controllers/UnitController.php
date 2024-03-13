@@ -48,17 +48,24 @@ class UnitController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Unit $unit)
     {
-        //
+        return view('units.edit', ['unit' => $unit]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Unit $unit)
     {
-        //
+        $validatedData = $request->validate([
+            'unit_name' => 'required|string|max:255',
+            'unit_type' => 'required|string|max:255'
+        ]);
+
+        $unit->update($validatedData);
+
+        return redirect()->back()->with('success', 'Successfully update unit!');
     }
 
     /**
