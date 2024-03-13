@@ -3,8 +3,8 @@
         <div class="left">
             @if (Breadcrumbs::has())
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-2 flex gap-2">
-                        <x-tabuna-breadcrumbs class="breadcrumb-item" active="active" />
+                    <ol class="breadcrumb mb-4 flex gap-4">
+                        <x-tabuna-breadcrumbs class="breadcrumb-item relative text-slate-500 text-sm" active="active" />
                     </ol>
                 </nav>
             @endif
