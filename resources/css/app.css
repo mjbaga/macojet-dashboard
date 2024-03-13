@@ -18,4 +18,23 @@
     .tab-active {
         @apply bg-white border-t-green-800 border-t-4;
     }
+
+    .btn {
+        @apply rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-slate-100 ease-in duration-100
+    }
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+    content: '/';
+    position: absolute;
+    top: 0;
+    right: -11px;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
 }
