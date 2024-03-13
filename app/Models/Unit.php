@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Orchid\Presenters\UnitPresenter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -22,10 +21,5 @@ class Unit extends Model
     public function rooms(): HasMany
     {
         return $this->hasMany(Room::class);
-    }
-
-    public function presenter(): UnitPresenter
-    {
-        return new UnitPresenter($this);
     }
 }
