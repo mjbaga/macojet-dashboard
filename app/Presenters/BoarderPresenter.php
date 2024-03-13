@@ -2,7 +2,7 @@
 
 namespace App\Presenters;
 
-trait BoarderPresenter
+trait Personable
 {
     public function getFullnameAttribute()
     {
