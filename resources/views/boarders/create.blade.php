@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-page-heading :title="'Create New Boarder'" />
 
-    <x-content-wrap class="max-w-3xl">
+    <x-content-wrap class="max-w-3xl mt-8">
         <form class="flex flex-col" action="{{ route('boarders.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 

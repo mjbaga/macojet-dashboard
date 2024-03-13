@@ -97,7 +97,7 @@
 
                 </div>
 
-                <div div class="grow flex-1" x-show="contact" x-transition>
+                <div div class="grow flex-1" x-cloak x-show="contact" x-transition>
 
                     <h2 class="text-center my-4 text-xl font-bold text-gray-800">Contact Info</h2>
 
@@ -176,7 +176,7 @@
                 </div>
 
 
-                <div div class="grow flex-1" x-show="extra" x-transition>
+                <div div class="grow flex-1" x-cloak x-show="extra" x-transition>
                     @if ($boarder->profile_type === 'working')
                         <x-worker-info :boarder="$boarder" />
                     @elseif ($boarder->profile_type === 'reviewee')
