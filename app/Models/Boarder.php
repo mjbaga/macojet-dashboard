@@ -14,6 +14,8 @@ class Boarder extends Model
 
     public static array $type = ['student', 'working', 'reviewee'];
 
+    public static array $genders = ['male', 'female', 'non-binary'];
+
     protected $fillable = [
         'first_name',
         'last_name',
@@ -32,7 +34,8 @@ class Boarder extends Model
         'profile_type',
         'profileable_type',
         'profileable_id',
-        'profile_pic'
+        'profile_pic',
+        'gender'
     ];
 
     public function profileable(): MorphTo

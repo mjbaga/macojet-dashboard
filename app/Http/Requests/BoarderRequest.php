@@ -40,6 +40,7 @@ class BoarderRequest extends FormRequest
             'profileable_type' => 'string|max:255|nullable',
             'profileable_id' => 'integer|nullable',
             'profile_picture' => 'image|mimes:jpg,jpeg,png|max:2048|nullable',
+            'gender' => 'required|string|max:255'
         ];
     }
 }

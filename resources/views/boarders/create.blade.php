@@ -12,7 +12,7 @@
                 <x-input-label for="profile_type" :value="__('Profile Type')" />
                 <x-select name="profile_type">
                     @foreach (\App\Models\Boarder::$type as $index => $type)
-                        <option value="{{ $type }}" {{ $index === 0 ? 'selected' : '' }}>
+                        <option value="{{ $type }}" @selected(old('profile_type') === $type)>
                             {{ Str::ucfirst($type) }}
                         </option>
                     @endforeach
@@ -21,6 +21,19 @@
                     Profile type cannot be changed once added.
                 </p>
                 <x-input-error :messages="$errors->get('profile_type')" class="mt-2" />
+            </div>
+
+            <!-- Gender -->
+            <div class="mb-4">
+                <x-input-label for="gender" :value="__('Gender')" />
+                <x-select name="gender">
+                    @foreach (\App\Models\Boarder::$genders as $index => $gender)
+                        <option value="{{ $gender }}" @selected(old('gender') === $gender)>
+                            {{ Str::ucfirst($gender) }}
+                        </option>
+                    @endforeach
+                </x-select>
+                <x-input-error :messages="$errors->get('gender')" class="mt-2" />
             </div>
 
             <!-- First Name -->

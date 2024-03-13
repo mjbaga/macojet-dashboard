@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-page-heading :title="'Boarders'" />
+    <x-page-heading :title="'Edit ' . $boarder->fullName" />
 
     <div x-data="{ personal: true, contact: false, extra: false }" class="py-10">
 
@@ -31,8 +31,7 @@
                         <x-input-label :value="__('Profile Type')" />
                         <x-select disabled>
                             @foreach (\App\Models\Boarder::$type as $type)
-                                <option value="{{ $type }}"
-                                    {{ $type === $boarder->profile_type ? 'selected' : '' }}>
+                                <option value="{{ $type }}" @selected($boarder->profile_type === $type)>
                                     {{ Str::ucfirst($type) }}
                                 </option>
                             @endforeach
@@ -40,6 +39,19 @@
                         <p class="font-semibold italic text-xs pt-2 pl-2">
                             Profile type cannot be changed.
                         </p>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="mb-4">
+                        <x-input-label for="gender" :value="__('Gender')" />
+                        <x-select name="gender">
+                            @foreach (\App\Models\Boarder::$genders as $gender)
+                                <option value="{{ $gender }}" @selected($boarder->gender === $gender)>
+                                    {{ Str::ucfirst($gender) }}
+                                </option>
+                            @endforeach
+                        </x-select>
+                        <x-input-error :messages="$errors->get('gender')" class="mt-2" />
                     </div>
 
                     <!-- First Name -->
@@ -86,7 +98,7 @@
                         @if ($boarder->profile_pic)
                             <div class="py-4 border w-1/4 border-slate-300">
                                 <img src="{{ asset('images/' . $boarder->profile_pic) }}"
-                                    alt="{{ $boarder->fullName() }}">
+                                    alt="{{ $boarder->fullName }}">
                             </div>
                         @endif
                         <x-input-label for="profile_picture" :value="__('Profile Picture')" />
@@ -128,8 +140,8 @@
                     <!-- Name of Father -->
                     <div class="mb-4">
                         <x-input-label for="name_of_father" :value="__('Name of Father')" />
-                        <x-text-input id="name_of_father" class="block mt-1 w-full" type="text" name="name_of_father"
-                            :value="$boarder->name_of_father" />
+                        <x-text-input id="name_of_father" class="block mt-1 w-full" type="text"
+                            name="name_of_father" :value="$boarder->name_of_father" />
                         <x-input-error :messages="$errors->get('name_of_father')" class="mt-2" />
                     </div>
 
