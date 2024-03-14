@@ -1,5 +1,7 @@
 import './bootstrap';
 
+import ContractPage from './components/ContractPage';
+
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
@@ -12,11 +14,11 @@ Alpine.store('boarder-tabs', {
 });
 
 (()=> {
-    const newRoomBtn = document.querySelector('#new-room');
 
-    newRoomBtn.addEventListener('click', (e)=> {
-        e.preventDefault();
-        
-        
-    });
+    const contractPage = document.querySelector('.create-contract');
+
+    if(contractPage) {
+        new ContractPage();
+    }
+    
 })();

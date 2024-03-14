@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -32,5 +34,17 @@ class Unit extends Model
         }
 
         return $capacity;
+    }
+
+    public function scopeBoardingType(Builder $query, string $type): Builder
+    {
+        return $query->where('unit_type', '=', $type);
+    }
+
+    public function getRooms(string $id)
+    {
+        $unit = Unit::findOrFail($id);
+
+        return $unit->rooms;
     }
 }

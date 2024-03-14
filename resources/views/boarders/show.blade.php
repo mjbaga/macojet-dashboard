@@ -25,6 +25,11 @@
                         </svg>
                     @endif
                 </div>
+                <div class="mt-4">
+                    <x-link-button :href="route('boarders.contracts.create', $boarder)">
+                        Create New Contract
+                    </x-link-button>
+                </div>
             </div>
             <div class="flex-1 w-xl">
                 <h2 class="h2">Personal Info</h2>

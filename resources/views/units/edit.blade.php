@@ -52,10 +52,10 @@
                     <div class="justify-self-end">{{ $room->capacity }}</div>
                 </x-row-entry>
             @empty
-                <div>No rooms added yet.</div>
+                <div class="p-4 text-center border-b border-b-slate-300">No rooms added yet.</div>
             @endforelse
 
-            @if ($unit->rooms)
+            @if (count($unit->rooms) > 0)
                 <x-row-entry :columns="2">
                     <div class="">Total capacity</div>
                     <div class="justify-self-end">{{ $unit->total_capacity }}</div>

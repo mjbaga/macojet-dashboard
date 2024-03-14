@@ -3,6 +3,7 @@
 use Tabuna\Breadcrumbs\Trail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoarderController;
+use App\Http\Controllers\LeaseAgreementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UnitController;
@@ -100,6 +101,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/units/{unit}/rooms', [RoomController::class, 'store'])
         ->name('units.rooms.store');
+
+    Route::get('/boarders/{boarder}/contracts/create', [LeaseAgreementController::class, 'create'])
+        ->name('boarders.contracts.create');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
