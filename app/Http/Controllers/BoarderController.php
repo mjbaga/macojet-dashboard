@@ -18,7 +18,7 @@ class BoarderController extends Controller
     {
         // dd(Boarder::paginate(10));
 
-        return view('boarders.index', ['boarders' => Boarder::paginate(50)]);
+        return view('boarders.index', ['boarders' => Boarder::paginate(10)]);
     }
 
     /**

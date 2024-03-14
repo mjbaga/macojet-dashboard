@@ -25,5 +25,8 @@
         @empty
             <p>No boarders yet.</p>
         @endforelse
+        <div class="my-4">
+            {{ $boarders->links() }}
+        </div>
     </x-content-wrap>
 </x-app-layout>
