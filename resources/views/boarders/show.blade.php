@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-page-heading :title="$boarder->fullName" />
 
-    <x-content-wrap class="max-w-7xl py-0 sm:rounded-tl-none">
+    <x-content-wrap class="max-w-7xl py-0">
 
         <div class="flex gap-8">
             <div class="w-54">

@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-page-heading :title="'Edit ' . $boarder->fullName" />
 
-    <div x-data="{ personal: true, contact: false, extra: false }" class="py-10">
+    <div x-data="{ personal: true, contact: false, extra: false }" class="pb-10">
 
         <div class="tabs max-w-2xl mx-auto">
             <button x-bind:class="personal ? 'tab-active' : ''" class="tab"
