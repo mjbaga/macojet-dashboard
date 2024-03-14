@@ -57,6 +57,15 @@ Route::middleware('auth')->group(function () {
                 ->push(__('Edit'), route('boarders.edit', $boarder))
         );
 
+    Route::get('/boarders/{boarder}', [BoarderController::class, 'show'])
+        ->name('boarders.show')
+        ->breadcrumbs(fn (Trail $trail, $boarder) => 
+            $trail
+                ->parent('dashboard')
+                ->push(__('Boarders'), route('boarders.index'))
+                ->push($boarder->fullName)
+        );
+
     Route::resource('boarders', BoarderController::class)
         ->except(['index', 'create', 'edit', 'show']);
 

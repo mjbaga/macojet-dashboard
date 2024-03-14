@@ -1,3 +1,4 @@
+@section('page_title', 'Edit ' . $boarder->fullName)
 <x-app-layout>
     <x-page-heading :title="'Edit ' . $boarder->fullName" />
 
@@ -190,11 +191,11 @@
 
                 <div div class="grow flex-1" x-cloak x-show="extra" x-transition>
                     @if ($boarder->profile_type === 'working')
-                        <x-worker-info :boarder="$boarder" />
+                        <x-worker-form :boarder="$boarder" />
                     @elseif ($boarder->profile_type === 'reviewee')
-                        <x-reviewee-info :boarder="$boarder" />
+                        <x-reviewee-form :boarder="$boarder" />
                     @elseif ($boarder->profile_type === 'student')
-                        <x-student-info :boarder="$boarder" />
+                        <x-student-form :boarder="$boarder" />
                     @endif
                 </div>
 

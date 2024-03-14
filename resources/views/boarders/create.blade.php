@@ -1,3 +1,4 @@
+@section('page_title', 'Create New Boarder')
 <x-app-layout>
     <x-page-heading :title="'Create New Boarder'" />
 
@@ -5,7 +6,7 @@
         <form class="flex flex-col" action="{{ route('boarders.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <h2 class="text-center mb-4 mt-4 text-xl font-bold text-gray-800">Personal Info</h2>
+            <h2 class="h2">Personal Info</h2>
 
             <!-- Profile Type -->
             <div class="mb-4">

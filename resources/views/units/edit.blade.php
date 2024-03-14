@@ -8,7 +8,7 @@
             @csrf
             @method('PUT')
 
-            <h2 class="text-center mb-4 mt-4 text-xl font-bold text-gray-800">Unit Details</h2>
+            <h2 class="h2">Unit Details</h2>
 
             <!-- Unit Name -->
             <div class="mb-4">
@@ -42,7 +42,7 @@
 
     <x-content-wrap class="max-w-xl my-8">
 
-        <h2 class="text-center mb-4 mt-4 text-xl font-bold text-gray-800">Current Rooms for {{ $unit->unit_name }}</h2>
+        <h2 class="h2">Current Rooms for {{ $unit->unit_name }}</h2>
 
         <div class="pb-4 ">
             <x-heading-entry :headings="['Room Name', 'Capacity']" />

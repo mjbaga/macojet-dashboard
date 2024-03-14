@@ -6,7 +6,7 @@
         <form class="flex flex-col" action="{{ route('units.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <h2 class="text-center mb-4 mt-4 text-xl font-bold text-gray-800">Unit Details</h2>
+            <h2 class="h2">Unit Details</h2>
 
             <!-- Unit Name -->
             <div class="mb-4">
