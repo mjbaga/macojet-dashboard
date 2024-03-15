@@ -35,7 +35,7 @@ class BoarderController extends Controller
     public function store(BoarderRequest $request)
     {
         $file = $request->file('profile_picture');
-        $path = $file->store('profile_pics', 'public');
+        $path = $file->store('profile_pics', 'private');
 
         $validatedData = [
             ...$request->validated(),
