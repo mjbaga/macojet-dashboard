@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\Unit::class)->onDelete('cascade');
-            $table->string('room_number')->unique();
+            $table->string('room_number');
             $table->integer('capacity');
             $table->timestamps();
         });

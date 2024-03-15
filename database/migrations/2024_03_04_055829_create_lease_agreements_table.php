@@ -19,10 +19,11 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->string('contract_document')->nullable();
-            $table->boolean('includes_city_services');
-            $table->integer('months_deposit');
-            $table->boolean('deposit_refunded');
-            $table->boolean('will_renew');
+            $table->boolean('includes_city_services')->default(0);
+            $table->integer('months_deposit')->default(0);
+            $table->integer('deposit_amount')->default(0);
+            $table->boolean('deposit_refunded')->default(0);
+            $table->boolean('will_renew')->default(0);
             $table->timestamps();
         });
     }
