@@ -142,15 +142,15 @@
                     </x-link-button>
                 </div>
                 <div class="mt-4">
-                    <x-heading-entry :headings="['Unit', 'Room', 'Start', 'End', 'Status']" />
+                    <x-entry-heading :headings="['Unit', 'Room', 'Start', 'End', 'Status']" />
                     @forelse ($boarder->contracts as $contract)
-                        <x-row-entry :columns="5">
+                        <x-entry-row :columns="5">
                             <div>{{ $contract->unit->unit_name }}</div>
                             <div>{{ $contract->room->room_number }}</div>
                             <div>{{ $contract->formatted_start_date }}</div>
                             <div>{{ $contract->formatted_end_date }}</div>
                             <div class="justify-self-end">{{ $contract->status }}</div>
-                        </x-row-entry>
+                        </x-entry-row>
                     @empty
                     @endforelse
 

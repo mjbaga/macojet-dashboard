@@ -3,9 +3,9 @@
     <x-page-heading :title="'Units'" :actions="[['href' => 'units.create', 'title' => 'Create New Unit']]" />
 
     <x-content-wrap class="max-w-7xl mt-12">
-        <x-heading-entry :headings="['Unit Name', 'Unit Type', 'Last Updated', 'Actions']" />
+        <x-entry-heading :headings="['Unit Name', 'Unit Type', 'Last Updated', 'Actions']" />
         @forelse ($units as $unit)
-            <x-row-entry :columns="4">
+            <x-entry-row :columns="4">
                 <div>
                     {{ $unit->unit_name }}
                 </div>
@@ -19,7 +19,7 @@
                         <x-danger-button class="btn btn-delete">Delete</x-danger-button>
                     </form>
                 </div>
-            </x-row-entry>
+            </x-entry-row>
         @empty
             <div class="py-12 text-center font-bold">
                 <p>No units yet.</p>

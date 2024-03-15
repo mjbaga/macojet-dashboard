@@ -6,17 +6,17 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class RowEntry extends Component
+class EntryHeading extends Component
 {
-    public $className;
+    public $classes;
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public int $columns = 1
+        public array $headings = []
     )
     {
-        $this->className = 'grid-cols-' . $columns;
+        $this->classes = 'grid-cols-' . count($headings);
     }
 
     /**
@@ -24,6 +24,6 @@ class RowEntry extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.row-entry');
+        return view('components.entry-heading');
     }
 }

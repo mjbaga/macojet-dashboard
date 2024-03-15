@@ -45,21 +45,21 @@
         <h2 class="h2">Current Rooms for {{ $unit->unit_name }}</h2>
 
         <div class="pb-4 ">
-            <x-heading-entry :headings="['Room Name', 'Capacity']" />
+            <x-entry-heading :headings="['Room Name', 'Capacity']" />
             @forelse ($unit->rooms as $room)
-                <x-row-entry :columns="2">
+                <x-entry-row :columns="2">
                     <div class="">{{ $room->room_number }}</div>
                     <div class="justify-self-end">{{ $room->capacity }}</div>
-                </x-row-entry>
+                </x-entry-row>
             @empty
                 <div class="p-4 text-center border-b border-b-slate-300">No rooms added yet.</div>
             @endforelse
 
             @if (count($unit->rooms) > 0)
-                <x-row-entry :columns="2">
+                <x-entry-row :columns="2">
                     <div class="">Total capacity</div>
                     <div class="justify-self-end">{{ $unit->total_capacity }}</div>
-                </x-row-entry>
+                </x-entry-row>
             @endif
         </div>
 

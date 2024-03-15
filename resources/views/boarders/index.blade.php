@@ -3,9 +3,9 @@
     <x-page-heading :title="'Boarders'" :actions="[['href' => 'boarders.create', 'title' => 'Create New Boarder']]" />
 
     <x-content-wrap class="max-w-7xl">
-        <x-heading-entry :headings="['Name', 'Email', 'Last Updated', 'Actions']" />
+        <x-entry-heading :headings="['Name', 'Email', 'Last Updated', 'Actions']" />
         @forelse ($boarders as $boarder)
-            <x-row-entry :columns="4">
+            <x-entry-row :columns="4">
                 <div>
                     <a href="{{ route('boarders.show', $boarder) }}" class="text-slate-500">
                         {{ $boarder->fullName }}
@@ -21,7 +21,7 @@
                         <x-danger-button class="btn btn-delete">Delete</x-danger-button>
                     </form>
                 </div>
-            </x-row-entry>
+            </x-entry-row>
         @empty
             <p>No boarders yet.</p>
         @endforelse
