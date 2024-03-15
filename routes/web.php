@@ -103,7 +103,17 @@ Route::middleware('auth')->group(function () {
         ->name('units.rooms.store');
 
     Route::get('/boarders/{boarder}/contracts/create', [LeaseAgreementController::class, 'create'])
-        ->name('boarders.contracts.create');
+        ->name('boarders.contracts.create')
+        ->breadcrumbs(fn (Trail $trail, $boarder) => 
+            $trail
+                ->parent('dashboard')
+                ->push(__('Boarders'), route('boarders.index'))
+                ->push(__($boarder->fullName), route('boarders.show', $boarder))
+                ->push('New Contract')
+        );
+
+    Route::resource('boarders.contract', LeaseAgreementController::class)
+        ->scoped()->except(['index', 'edit']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

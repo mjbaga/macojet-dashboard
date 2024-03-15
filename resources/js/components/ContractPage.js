@@ -7,7 +7,7 @@ export default class ContractPage {
         const unitSelect = document.querySelector('#unit_id');
         const roomSelect = document.querySelector('#room_id');
 
-        const defaultOptionStr = `<option value="0">Select Room</option>`;
+        const defaultOptionStr = `<option>Select Room</option>`;
 
         unitSelect.addEventListener('change', (e) => {
             const id = e.target.value;
@@ -32,7 +32,7 @@ export default class ContractPage {
                 const roomOptions = response.data;
 
                 roomOptions.forEach(room => {
-                    const option = `<option value="${room.room_id}">${room.room_number}</option>`;
+                    const option = `<option value="${room.id}">${room.room_number}</option>`;
                     roomSelect.insertAdjacentHTML('beforeend', option);
                 });
             });
