@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\WorkerProfile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -15,12 +16,13 @@ class WorkerProfileFactory extends Factory
      * @return array<string, mixed>
      */
 
-    public static array $scheduleType = ['Regular 9 - 5 weekdays', 'Irregular'];
-
     public function definition(): array
     {
         return [
-            //
+            'company' => fake()->company(),
+            'company_address' => fake()->streetAddress(),
+            'position' => fake()->jobTitle(),
+            'schedule_type' => fake()->randomElement(WorkerProfile::$scheduleType)
         ];
     }
 }

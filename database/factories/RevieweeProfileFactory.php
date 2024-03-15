@@ -17,7 +17,8 @@ class RevieweeProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'review_center' => fake()->company(),
+            'review_center_address' => fake()->streetAddress()
         ];
     }
 }

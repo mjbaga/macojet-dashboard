@@ -17,8 +17,12 @@ class WorkerProfile extends Model
         'schedule_type'
     ];
 
+    public static array $scheduleType = ['Regular 9 - 5 weekdays', 'Irregular'];
+
     public function boarder(): MorphOne
     {
         return $this->morphOne(\App\Models\Boarder::class, 'profileable');
     }
+
+    
 }

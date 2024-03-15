@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Boarder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,6 +21,7 @@ class BoarderFactory extends Factory
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'nickname' => fake()->firstName(),
+            'gender' => fake()->randomElement(Boarder::$genders),
             'email' => fake()->unique()->safeEmail(),
             'contact_number' => fake()->phoneNumber,
             'fb_account_name' => fake()->name(),
@@ -30,5 +32,32 @@ class BoarderFactory extends Factory
             'name_of_father' => fake()->name(),
             'father_contact' => fake()->phoneNumber
         ];
+    }
+
+    public function student()
+    {
+        return $this->state(function (array $attributes){
+            return [
+                'profile_type' => 'student'
+            ];
+        });
+    }
+
+    public function reviewee()
+    {
+        return $this->state(function (array $attributes){
+            return [
+                'profile_type' => 'reviewee'
+            ];
+        });
+    }
+
+    public function working()
+    {
+        return $this->state(function (array $attributes){
+            return [
+                'profile_type' => 'working'
+            ];
+        });
     }
 }
