@@ -32,7 +32,9 @@ return new class extends Migration
             $table->string('guardian_contact')->nullable();
             $table->string('profile_type')->nullable();
             $table->string('profileable_type')->nullable();
-            $table->unsignedInteger('profileable_id')->nullable();
+            $table->unsignedInteger('profileable_id')->nullable()->nullOnDelete();
+            
+            $table->softDeletes();
 
             $table->timestamps();
         });

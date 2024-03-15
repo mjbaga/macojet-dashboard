@@ -24,7 +24,9 @@ return new class extends Migration
             $table->integer('deposit_amount')->default(0);
             $table->boolean('deposit_refunded')->default(0);
             $table->boolean('will_renew')->default(0);
+            $table->boolean('active')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

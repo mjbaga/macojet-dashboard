@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('unit_name')->unique();
             $table->string('unit_type');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
