@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class LeaseAgreement extends Model
 {
@@ -39,5 +39,22 @@ class LeaseAgreement extends Model
     public function room(): BelongsTo
     {
         return $this->belongsTo(Room::class);
+    }
+
+    public function getFormattedStartDateAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d', $this->start_date)->toFormattedDateString();
+    }
+
+    public function getFormattedEndDateAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d', $this->end_date)->toFormattedDateString();
+    }
+
+    public function getStatusAttribute()
+    {
+        $now = Carbon::now();
+        
+        return ($now >= $this->start_date && $now <= $this->end_date) && $this->active ? 'Active' : 'Ended';
     }
 }

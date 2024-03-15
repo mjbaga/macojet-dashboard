@@ -52,7 +52,7 @@
         @endif
 
         <!-- Page Content -->
-        <main class="my-12">
+        <main class="container mt-12 mx-auto pb-12">
             {{ $slot }}
         </main>
     </div>

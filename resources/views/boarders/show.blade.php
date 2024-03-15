@@ -25,14 +25,9 @@
                         </svg>
                     @endif
                 </div>
-                <div class="mt-4">
-                    <x-link-button :href="route('boarders.contracts.create', $boarder)">
-                        Create New Contract
-                    </x-link-button>
-                </div>
             </div>
-            <div class="flex-1 w-xl">
-                <h2 class="h2">Personal Info</h2>
+            <div class="w-2xl">
+                <h2 class="h2 bg-gray-500 py-2 text-white mt-0">Personal Info</h2>
                 <div class="grid grid-cols-2 gap-2 items-start">
 
                     <label>Nickname: </label>
@@ -50,7 +45,7 @@
 
                 </div>
 
-                <h2 class="h2">Contact Info</h2>
+                <h2 class="h2 bg-gray-500 py-2 text-white">Contact Info</h2>
                 <div class="grid grid-cols-2 gap-2">
 
                     <label>Email: </label>
@@ -110,13 +105,12 @@
                     @else
                         <p>n/a</p>
                     @endif
-
                 </div>
-            </div>
-            <div class="flex-1 w-xl">
-                <h2 class="h2">
+
+                <h2 class="h2 bg-gray-500 py-2 text-white">
                     {{ Str::ucfirst($boarder->profile_type) }} Profile
                 </h2>
+
                 @if ($boarder->profile_type === 'working')
                     <x-worker-info :boarder="$boarder" />
                 @elseif($boarder->profile_type === 'reviewee')
@@ -125,7 +119,51 @@
                     <x-student-info :boarder="$boarder" />
                 @endif
             </div>
+            <div class="flex-1 ">
+                <div class="border border-slate-500">
+                    <h2 class="h2 py-2 my-0">Notes</h2>
+                    <div class="grid py-8 place-items-center bg-green-200">
+                        <p>No notes yet.</p>
+                        <button class="btn mt-2">Create Note</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </x-content-wrap>
+
+    @if ($boarder->contracts)
+        <div class="flex items-start max-w-7xl mx-auto gap-4">
+            <x-content-wrap class="flex-1 w-3xl py-0 mt-8 mx-0">
+                <div class="flex justify-between items-center">
+                    <h2 class="h2 py-2 my-0">Contracts</h2>
+                    <x-link-button :href="route('boarders.contracts.create', $boarder)">
+                        New Contract
+                    </x-link-button>
+                </div>
+                <div class="mt-4">
+                    <x-heading-entry :headings="['Unit', 'Room', 'Start', 'End', 'Status']" />
+                    @forelse ($boarder->contracts as $contract)
+                        <x-row-entry :columns="5">
+                            <div>{{ $contract->unit->unit_name }}</div>
+                            <div>{{ $contract->room->room_number }}</div>
+                            <div>{{ $contract->formatted_start_date }}</div>
+                            <div>{{ $contract->formatted_end_date }}</div>
+                            <div class="justify-self-end">{{ $contract->status }}</div>
+                        </x-row-entry>
+                    @empty
+                    @endforelse
+
+                </div>
+            </x-content-wrap>
+            <x-content-wrap class="grow-1 w-1/3 py-0 mt-8 mx-0">
+                <div class="flex justify-between items-center">
+                    <h2 class="h2 py-2 my-0">Payments</h2>
+                    <x-link-button :href="'#'">
+                        Add Payment
+                    </x-link-button>
+                </div>
+            </x-content-wrap>
+        </div>
+    @endif
 </x-app-layout>
