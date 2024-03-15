@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LeaseAgreementRequest;
 use App\Models\Boarder;
 use App\Models\Unit;
 use Illuminate\Http\Request;
@@ -24,9 +25,23 @@ class LeaseAgreementController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LeaseAgreementRequest $request, Boarder $boarder)
     {
-        //
+        $data = $request->validated();
+
+        $file = $request->file('contract_doc');
+
+        $validatedData = [...$data];
+
+        if($file) {
+            $path = $file->store('contracts', 'private');
+            $validatedData['contract_document'] = $path;
+        }
+
+        $boarder->contracts()->create($validatedData);
+
+        return redirect()->route('boarders.show', $boarder)
+            ->with('success', 'Successfully created new lease contract.');
     }
 
     /**

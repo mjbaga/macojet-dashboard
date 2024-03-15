@@ -9,16 +9,6 @@
 
             <h2 class="h2">Lease Agreement</h2>
 
-            <div class="flex flex-col">
-                <ul>
-                    @forelse ($errors as $error)
-                        <li>{{ $error }}</li>
-                    @empty
-                        <li>No Errors.</li>
-                    @endforelse
-                </ul>
-            </div>
-
             <!-- Unit Select -->
             <div class="mb-4">
                 <x-input-label for="unit_id" :value="__('Select Unit')" />
@@ -68,17 +58,17 @@
             <div class="mb-4">
                 <x-input-label for="months_deposit" :value="__('Months Deposit')" />
                 <x-text-input id="months_deposit" class="block mt-1 w-full" type="number" name="months_deposit"
-                    :value="old('months_deposit')" required />
+                    :value="old('months_deposit') ?? 0" required />
                 <x-input-error :messages="$errors->get('months_deposit')" class="mt-2" />
             </div>
 
             <!-- Deposit Amount -->
-            {{-- <div class="mb-4">
+            <div class="mb-4">
                 <x-input-label for="deposit_amount" :value="__('Total Deposit Amount')" />
                 <x-text-input id="deposit_amount" class="block mt-1 w-full" type="number" name="deposit_amount"
-                    :value="old('deposit_amount')" required />
+                    :value="old('deposit_amount') ?? 0" required />
                 <x-input-error :messages="$errors->get('deposit_amount')" class="mt-2" />
-            </div> --}}
+            </div>
 
             <!-- Includes City Services -->
             <div class="mb-4 mt-4 flex gap-2 items-center">

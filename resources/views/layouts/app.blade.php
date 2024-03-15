@@ -52,7 +52,7 @@
         @endif
 
         <!-- Page Content -->
-        <main class="py-12">
+        <main class="my-12">
             {{ $slot }}
         </main>
     </div>

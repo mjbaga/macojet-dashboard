@@ -20,8 +20,10 @@ class LeaseAgreement extends Model
         'contract_document',
         'includes_city_services',
         'months_deposit',
+        'deposit_amount',
         'deposit_refunded',
-        'will_renew'
+        'will_renew',
+        'active'
     ];
 
     public function boarder(): BelongsTo
