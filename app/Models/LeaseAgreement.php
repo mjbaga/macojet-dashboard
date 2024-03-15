@@ -52,9 +52,14 @@ class LeaseAgreement extends Model
     }
 
     public function getStatusAttribute()
+    {    
+        return $this->isActive() ? 'Active' : 'Ended';
+    }
+
+    public function isActive()
     {
         $now = Carbon::now();
-        
-        return ($now >= $this->start_date && $now <= $this->end_date) && $this->active ? 'Active' : 'Ended';
+
+        return ($now >= $this->start_date && $now <= $this->end_date) && $this->active;
     }
 }

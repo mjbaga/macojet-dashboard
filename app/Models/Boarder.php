@@ -54,5 +54,18 @@ class Boarder extends Model
     {
         return Carbon::createFromFormat('Y-m-d', $this->date_of_birth)->toFormattedDateString();
     }
+
+    public function isCurrentBoarder()
+    {
+        if(!$this->contracts) return false;
+
+        foreach($this->contracts as $contract) {
+            if($contract->isActive()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
 
