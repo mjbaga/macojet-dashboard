@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Boarder extends Model
 {
@@ -42,6 +43,11 @@ class Boarder extends Model
     public function profileable(): MorphTo
     {
         return $this->morphTo(__FUNCTION__, 'profileable_type', 'profileable_id');
+    }
+
+    public function contracts(): HasMany
+    {
+        return $this->hasMany(LeaseAgreement::class);
     }
 
     public function getFormattedDateOfBirthAttribute()

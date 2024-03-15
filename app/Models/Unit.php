@@ -25,6 +25,11 @@ class Unit extends Model
         return $this->hasMany(Room::class);
     }
 
+    public function contracts(): HasMany
+    {
+        return $this->hasMany(LeaseAgreement::class);
+    }
+
     public function getTotalCapacityAttribute()
     {
         $capacity = 0;
