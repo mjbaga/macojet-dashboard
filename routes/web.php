@@ -112,7 +112,17 @@ Route::middleware('auth')->group(function () {
                 ->push('New Contract')
         );
 
-    Route::resource('boarders.contract', LeaseAgreementController::class)
+    Route::get('/boarders/{boarder}/contracts/{contract}/edit', [LeaseAgreementController::class, 'edit'])
+        ->name('boarders.contracts.edit')
+        ->breadcrumbs(fn (Trail $trail, $boarder) => 
+            $trail
+                ->parent('dashboard')
+                ->push(__('Boarders'), route('boarders.index'))
+                ->push(__($boarder->fullName), route('boarders.show', $boarder))
+                ->push('Edit Contract')
+        );
+
+    Route::resource('boarders.contracts', LeaseAgreementController::class)
         ->scoped()->except(['index', 'edit']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

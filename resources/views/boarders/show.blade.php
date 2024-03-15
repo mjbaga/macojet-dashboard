@@ -5,7 +5,7 @@
     <x-content-wrap class="max-w-7xl py-0">
 
         <div class="flex gap-8">
-            <div class="w-54">
+            <div class="max-w-52">
                 <div class="p-2 border border-slate-300">
                     @if ($boarder->profile_pic)
                         <img src="{{ asset('images/' . $boarder->profile_pic) }}" alt="{{ $boarder->fullName }}"
@@ -142,14 +142,20 @@
                     </x-link-button>
                 </div>
                 <div class="mt-4">
-                    <x-entry-heading :headings="['Unit', 'Room', 'Start', 'End', 'Status']" />
+                    <x-entry-heading :headings="['Unit', 'Room', 'Start', 'End', 'Status', 'Actions']" />
                     @forelse ($boarder->contracts as $contract)
-                        <x-entry-row :columns="5">
+                        <x-entry-row :columns="6">
                             <div>{{ $contract->unit->unit_name }}</div>
                             <div>{{ $contract->room->room_number }}</div>
                             <div>{{ $contract->formatted_start_date }}</div>
                             <div>{{ $contract->formatted_end_date }}</div>
-                            <div class="justify-self-end">{{ $contract->status }}</div>
+                            <div>{{ $contract->status }}</div>
+                            <div class="justify-self-end">
+                                <x-link-button :href="route('boarders.contracts.edit', [$boarder, $contract])">
+                                    Edit
+                                </x-link-button>
+
+                            </div>
                         </x-entry-row>
                     @empty
                     @endforelse
