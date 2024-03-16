@@ -1,5 +1,7 @@
 import './bootstrap';
+import '../sass/app.scss'
 
+import { Modal } from "bootstrap";
 import ContractPage from './components/ContractPage';
 
 import Alpine from 'alpinejs';

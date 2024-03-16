@@ -12,18 +12,18 @@
     }
 
     .tab {
-        @apply bg-gray-300 rounded-t-md px-8 py-4 text-center;
+        @apply bg-gray-300 rounded-t-md px-8 py-2 text-center;
     }
 
     .tab-active {
         @apply bg-white border-t-green-800 border-t-4;
     }
 
-    .btn {
+    .button {
         @apply rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-slate-100 ease-in duration-100
     }
 
-    .btn-green {
+    .button-green {
         @apply w-48 mx-auto rounded-md border border-transparent bg-green-500 px-2.5 py-1.5 text-center text-sm font-semibold text-white hover:text-green-500 shadow-sm hover:bg-green-200 ease-in duration-200 hover:border hover:border-green-500
     }
 
