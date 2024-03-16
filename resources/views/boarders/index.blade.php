@@ -19,7 +19,7 @@
                     <form action="{{ route('boarders.destroy', $boarder) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <x-danger-button class="btn btn-delete">Delete</x-danger-button>
+                        <button class="btn btn-danger">Delete</button>
                     </form>
                 </div>
             </x-entry-row>

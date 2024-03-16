@@ -1,3 +1,3 @@
-<a href="{{ $href }}" {{ $attributes->class('btn') }}>
+<a href="{{ $href }}" {{ $attributes->class('button btn-primary') }}>
     {{ $slot }}
 </a>
