@@ -1,5 +1,7 @@
 'use strict';
 
+import { confirmModal } from "../utilities";
+
 export default class ContractPage {
 
     constructor() {
@@ -36,6 +38,13 @@ export default class ContractPage {
                     roomSelect.insertAdjacentHTML('beforeend', option);
                 });
             });
+        });
+
+        confirmModal((confirm) => {
+            if(confirm) {
+                const terminateForm = document.querySelector('#terminate-contract-form');
+                terminateForm.submit();
+            }
         });
         
     }

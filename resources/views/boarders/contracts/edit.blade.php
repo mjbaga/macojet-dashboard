@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-page-heading :title="'Update Lease Agreement for ' . $boarder->fullName" />
 
-    <x-content-wrap class="max-w-3xl create-contract">
+    <x-content-wrap class="max-w-3xl contract-form">
         <form class="flex flex-col" action="{{ route('boarders.contracts.update', [$boarder, $contract]) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
@@ -98,10 +98,30 @@
                 <x-input-label for="will_renew" class="cursor-pointer" :value="__('Will Renew')" />
             </div>
 
-            <button class="btn-green" type="submit">
+            <button class="button-green" type="submit">
                 Update Contract Details
             </button>
 
         </form>
+
+        <div class="mt-4 bg-red-200 p-4">
+            <h2 class="h2">Danger Zone</h2>
+
+            <form id="terminate-contract-form" action="{{ route('boarders.contracts.end', [$boarder, $contract]) }}"
+                method="POST">
+                @csrf
+                @method('PATCH')
+
+                <button id="#confirm-terminate-btn" type="button" class="btn btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#confirm-terminate">
+                    Terminate Contract
+                </button>
+                <p class="mt-2">Terminating this set this contract as not active and will end it today.</p>
+            </form>
+        </div>
+
+        <x-modal-confirm id="confirm-terminate" :title="'Confirm'">
+            Are you sure you want to terminate this contract?
+        </x-modal-confirm>
     </x-content-wrap>
 </x-app-layout>

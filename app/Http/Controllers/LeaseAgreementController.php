@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LeaseAgreementRequest;
-use App\Models\Boarder;
-use App\Models\LeaseAgreement;
+use Carbon\Carbon;
 use App\Models\Unit;
+use App\Models\Boarder;
 use Illuminate\Http\Request;
+use App\Models\LeaseAgreement;
+use App\Http\Requests\LeaseAgreementRequest;
 
 class LeaseAgreementController extends Controller
 {
@@ -99,5 +100,16 @@ class LeaseAgreementController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function terminate(Boarder $boarder, LeaseAgreement $contract)
+    {
+        $contract->update([
+            'active' => 0,
+            'end_date' => Carbon::now()->format('Y-m-d')
+        ]);
+
+        return redirect()->route('boarders.show', $boarder)
+            ->with('success', 'Terminated contract.');
     }
 }

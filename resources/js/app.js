@@ -17,7 +17,7 @@ Alpine.store('boarder-tabs', {
 
 (()=> {
 
-    const contractPage = document.querySelector('.create-contract');
+    const contractPage = document.querySelector('.contract-form');
 
     if(contractPage) {
         new ContractPage();
