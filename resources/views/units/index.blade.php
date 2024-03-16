@@ -16,7 +16,10 @@
                     <form action="{{ route('units.destroy', $unit) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <x-danger-button class="btn btn-delete">Delete</x-danger-button>
+                        <button type="button" class="btn btn-danger index-delete-btn" data-bs-toggle="modal"
+                            data-bs-target="#delete-modal">
+                            Delete
+                        </button>
                     </form>
                 </div>
             </x-entry-row>
@@ -25,5 +28,11 @@
                 <p>No units yet.</p>
             </div>
         @endforelse
+
+        @if ($units)
+            <x-modal-confirm id="delete-modal" :title="'Confirm'">
+                Are you sure you want to delete this unit?
+            </x-modal-confirm>
+        @endif
     </x-content-wrap>
 </x-app-layout>

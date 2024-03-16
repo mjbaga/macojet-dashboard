@@ -40,12 +40,13 @@ export default class ContractPage {
             });
         });
 
+        const terminateForm = document.querySelector('#terminate-contract-form');
+
         confirmModal((confirm) => {
             if(confirm) {
-                const terminateForm = document.querySelector('#terminate-contract-form');
                 terminateForm.submit();
             }
-        });
+        }, terminateForm);
         
     }
 

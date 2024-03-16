@@ -19,7 +19,10 @@
                     <form action="{{ route('boarders.destroy', $boarder) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-danger index-delete-btn" data-bs-toggle="modal"
+                            data-bs-target="#delete-modal">
+                            Delete
+                        </button>
                     </form>
                 </div>
             </x-entry-row>
@@ -29,5 +32,11 @@
         <div class="my-4">
             {{ $boarders->links() }}
         </div>
+
+        @if ($boarders)
+            <x-modal-confirm id="delete-modal" :title="'Confirm'">
+                Are you sure you want to delete this boarder?
+            </x-modal-confirm>
+        @endif
     </x-content-wrap>
 </x-app-layout>

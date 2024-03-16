@@ -100,9 +100,9 @@ class BoarderController extends Controller
      */
     public function destroy(Boarder $boarder)
     {
-        // $boarder->delete();
+        $boarder->delete();
 
-        return view('boarders.index', ['boarders' => Boarder::paginate(50)])->with('success', 'Successfully deleted boarder.');
+        return redirect()->back()->with('success', 'Successfully deleted boarder.');
     }
 
     public function getProfileService($boarder): WorkerProfileService|RevieweeProfileService|StudentProfileService

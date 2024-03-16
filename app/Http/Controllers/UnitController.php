@@ -71,8 +71,10 @@ class UnitController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Unit $unit)
     {
-        //
+        $unit->delete();
+
+        return redirect()->back()->with('success', 'Successfully deleted unit.');
     }
 }
