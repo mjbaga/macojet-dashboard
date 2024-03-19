@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Presenters\Transactable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LeaseAgreement extends Model
 {
-    use HasFactory;
+    use HasFactory, Transactable;
 
     protected $fillable = [
         'boarder_id',

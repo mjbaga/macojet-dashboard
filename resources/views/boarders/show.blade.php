@@ -164,10 +164,18 @@
             </x-content-wrap>
             <x-content-wrap class="grow-1 w-1/3 py-0 mt-8 mx-0">
                 <div class="flex justify-between items-center">
-                    <h2 class="h2 py-2 my-0">Payments</h2>
+                    <h2 class="h2 py-2 my-0">Transactions</h2>
                     <x-link-button :href="'#'">
-                        Add Payment
+                        New Transaction
                     </x-link-button>
+                </div>
+                <div class="border border-slate-500 mt-2">
+                    <div class="grid py-8 place-items-center bg-green-200">
+                        <p>No Transactions yet.</p>
+                        <x-link-button :href="'#'" class="mt-2">
+                            New Transaction
+                        </x-link-button>
+                    </div>
                 </div>
             </x-content-wrap>
         </div>
