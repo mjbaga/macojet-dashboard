@@ -2,11 +2,12 @@
 
 use Tabuna\Breadcrumbs\Trail;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BoarderController;
-use App\Http\Controllers\LeaseAgreementController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\BoarderController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\LeaseAgreementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -127,6 +128,11 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('/boarders/{boarder}/contracts/{contract}/terminate', [LeaseAgreementController::class, 'terminate'])
         ->name('boarders.contracts.end');
+
+    Route::resource('transactions', TransactionController::class);
+
+    Route::post('/boarders/{boarder}/transactions', [TransactionController::class, 'store'])
+        ->name('boarders.transactions.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

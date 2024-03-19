@@ -165,19 +165,22 @@
             <x-content-wrap class="grow-1 w-1/3 py-0 mt-8 mx-0">
                 <div class="flex justify-between items-center">
                     <h2 class="h2 py-2 my-0">Transactions</h2>
-                    <x-link-button :href="'#'">
+                    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#transaction-form">
                         New Transaction
-                    </x-link-button>
+                    </button>
                 </div>
                 <div class="border border-slate-500 mt-2">
                     <div class="grid py-8 place-items-center bg-green-200">
                         <p>No Transactions yet.</p>
-                        <x-link-button :href="'#'" class="mt-2">
+                        <button type="button" class="button mt-2" data-bs-toggle="modal"
+                            data-bs-target="#transaction-form">
                             New Transaction
-                        </x-link-button>
+                        </button>
                     </div>
                 </div>
             </x-content-wrap>
+
+            <x-transaction-popup :transactable-id="$boarder->id" :transactable-type="'App\Models\Boarder'" />
         </div>
     @endif
 </x-app-layout>

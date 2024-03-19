@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use App\Presenters\Personable;
+use App\Presenters\Transactable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Boarder extends Model
 {
-    use HasFactory, SoftDeletes, Personable;
+    use HasFactory, SoftDeletes, Personable, Transactable;
 
     public static array $type = ['student', 'working', 'reviewee'];
 

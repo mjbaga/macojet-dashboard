@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Http\Requests\TransactionRequest;
+use App\Interfaces\TransactableInterface;
+use App\Services\BoarderTransactionService;
 
 class TransactionController extends Controller
 {
@@ -20,15 +23,18 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        return view('transactions.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TransactionRequest $request)
     {
-        //
+        $boarderInterface = new BoarderTransactionService();
+        $boarderInterface->save($request);
+
+        return redirect()->back()->with('success', 'Transaction successfully added!');
     }
 
     /**

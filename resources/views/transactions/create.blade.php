@@ -8,6 +8,7 @@
         <form action="{{ route('transactions.create') }}" method="POST">
             @csrf
 
+
         </form>
     </x-content-wrap>
 </x-app-layout>
