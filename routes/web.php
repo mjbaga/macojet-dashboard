@@ -6,6 +6,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\BoarderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransientController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\LeaseAgreementController;
 
@@ -69,6 +70,44 @@ Route::middleware('auth')->group(function () {
         );
 
     Route::resource('boarders', BoarderController::class)
+        ->except(['index', 'create', 'edit', 'show']);
+
+    Route::get('/transients', [TransientController::class, 'index'])
+        ->name('transients.index')
+        ->breadcrumbs(fn (Trail $trail) => 
+            $trail
+                ->parent('dashboard')
+                ->push(__('Transients'), route('transients.index'))
+        );
+
+    Route::get('/transients/create', [TransientController::class, 'create'])
+        ->name('transients.create')
+        ->breadcrumbs(fn (Trail $trail) => 
+            $trail
+                ->parent('dashboard')
+                ->push(__('Transients'), route('transients.index'))
+                ->push(__('New'), route('transients.create'))
+        );
+
+    Route::get('/transients/{transient}/edit', [TransientController::class, 'edit'])
+        ->name('transients.edit')
+        ->breadcrumbs(fn (Trail $trail, $transient) => 
+            $trail
+                ->parent('dashboard')
+                ->push(__('transients'), route('transients.index'))
+                ->push(__('Edit'), route('transients.edit', $transient))
+        );
+
+    Route::get('/transients/{transient}', [TransientController::class, 'show'])
+        ->name('transients.show')
+        ->breadcrumbs(fn (Trail $trail, $transient) => 
+            $trail
+                ->parent('dashboard')
+                ->push(__('Transients'), route('transients.index'))
+                ->push($transient->fullName)
+        );
+
+    Route::resource('transients', TransientController::class)
         ->except(['index', 'create', 'edit', 'show']);
 
     Route::get('/units', [UnitController::class, 'index'])

@@ -22,8 +22,18 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('transients.index')" :active="request()->routeIs('transients.index')">
+                        {{ __('Transients') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('units.index')" :active="request()->routeIs('units.index')">
                         {{ __('Units') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('transactions.index')" :active="request()->routeIs('transations.index')">
+                        {{ __('Transactions') }}
                     </x-nav-link>
                 </div>
             </div>
