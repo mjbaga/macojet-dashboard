@@ -20,6 +20,8 @@ return new class extends Migration
             $table->foreignIdFor(Unit::class);
             $table->date('check_in');
             $table->date('check_out');
+            $table->integer('number_of_pax');
+            $table->float('rate', 8,2);
 
             $table->timestamps();
         });

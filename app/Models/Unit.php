@@ -30,6 +30,11 @@ class Unit extends Model
         return $this->hasMany(LeaseAgreement::class);
     }
 
+    public function bookings(): HasMany
+    {
+        return $this->hasMany(Booking::class);
+    }
+
     public function getTotalCapacityAttribute()
     {
         $capacity = 0;
@@ -41,7 +46,7 @@ class Unit extends Model
         return $capacity;
     }
 
-    public function scopeBoardingType(Builder $query, string $type): Builder
+    public function scopeUnitType(Builder $query, string $type): Builder
     {
         return $query->where('unit_type', '=', $type);
     }
@@ -52,4 +57,5 @@ class Unit extends Model
 
         return $unit->rooms;
     }
+
 }

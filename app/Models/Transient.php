@@ -16,6 +16,17 @@ class Transient extends Model
 {
     use HasFactory, SoftDeletes, Personable, Transactable;
 
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'contact_number',
+        'fb_account_name',
+        'date_of_birth',
+        'origin_address',
+        'gender',
+        'id_card'
+    ];
+
     public function bookings(): HasMany
     {
         return $this->hasMany(Booking::class);

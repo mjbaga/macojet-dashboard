@@ -26,7 +26,7 @@
                     @endif
                 </div>
             </div>
-            <div class="w-2xl">
+            <div class="basis-1/2">
                 <h2 class="h2 bg-gray-500 py-2 text-white mt-0">Personal Info</h2>
                 <div class="grid grid-cols-2 gap-2 items-start">
 
@@ -119,7 +119,7 @@
                     <x-student-info :boarder="$boarder" />
                 @endif
             </div>
-            <div class="flex-1 ">
+            <div class="flex-1">
                 <div class="border border-slate-500">
                     <h2 class="h2 py-2 my-0">Notes</h2>
                     <div class="grid py-8 place-items-center bg-green-200">
@@ -158,6 +158,9 @@
                             </div>
                         </x-entry-row>
                     @empty
+                        <div class="grid py-8 place-items-center">
+                            <p>No contracts yet.</p>
+                        </div>
                     @endforelse
 
                 </div>
@@ -180,7 +183,7 @@
                 </div>
             </x-content-wrap>
 
-            <x-transaction-popup :transactable-id="$boarder->id" :transactable-type="'App\Models\Boarder'" />
+            <x-popup-transaction :transactable-id="$boarder->id" :transactable-type="'App\Models\Boarder'" />
         </div>
     @endif
 </x-app-layout>

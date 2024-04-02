@@ -51,11 +51,6 @@ class Boarder extends Model
         return $this->hasMany(LeaseAgreement::class);
     }
 
-    public function getFormattedDateOfBirthAttribute()
-    {
-        return Carbon::createFromFormat('Y-m-d', $this->date_of_birth)->toFormattedDateString();
-    }
-
     public function isCurrentBoarder()
     {
         if(!$this->contracts) return false;

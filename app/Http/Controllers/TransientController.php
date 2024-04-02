@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Unit;
+use Carbon\Traits\Units;
 use App\Models\Transient;
 use Illuminate\Http\Request;
+use App\Http\Requests\TransientRequest;
 
 class TransientController extends Controller
 {
@@ -26,17 +29,30 @@ class TransientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TransientRequest $request)
     {
-        //
+        $file = $request->file('identification');
+        $path = $file->store('transient_ids', 'private');
+
+        $validatedData = [
+            ...$request->validated(),
+            'id_card' => $path
+        ];
+
+        $transient = Transient::create($validatedData);
+
+        return redirect()->route('transients.show', $transient)
+            ->with('success', 'Successfully added new transi!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Transient $transient)
     {
-        //
+        $transientUnits = Unit::unitType('transient')->get();
+        
+        return view('transients.show', ['transient' => $transient, 'units' => $transientUnits]);
     }
 
     /**

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\BoarderController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransientController;
 use App\Http\Controllers\TransactionController;
@@ -109,6 +110,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('transients', TransientController::class)
         ->except(['index', 'create', 'edit', 'show']);
+
+    Route::resource('transients.bookings', BookingController::class)
+        ->except(['show', 'create', 'edit']);
 
     Route::get('/units', [UnitController::class, 'index'])
         ->name('units.index')

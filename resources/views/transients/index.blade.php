@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-page-heading :title="'Transients'" :actions="[['href' => 'transients.create', 'title' => 'Add New Transient']]" />
 
-    <x-content-wrap class="max-w-3xl">
+    <x-content-wrap class="max-w-7xl">
         <x-entry-heading :headings="['Name', 'Contact', 'Check In', 'Check Out', 'Actions']" />
         @forelse ($transients as $transient)
             <x-entry-row :columns="5">
@@ -29,6 +29,10 @@
         @empty
             <p>No transients yet.</p>
         @endforelse
+
+        <div class="my-4">
+            {{ $transients->links() }}
+        </div>
 
     </x-content-wrap>
 </x-app-layout>

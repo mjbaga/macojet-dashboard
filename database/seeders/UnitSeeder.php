@@ -25,7 +25,21 @@ class UnitSeeder extends Seeder
             'unit_type' => 'transient'
         ]);
 
-        $this->createRooms($unitT, [3, 2, 3]);
+        $this->createRooms($unitT, [2]);
+
+        $unitT1 = Unit::create([
+            'unit_name' => 'Unit T1',
+            'unit_type' => 'transient'
+        ]);
+
+        $this->createRooms($unitT1, [2]);
+
+        $unitT2 = Unit::create([
+            'unit_name' => 'Unit T2',
+            'unit_type' => 'transient'
+        ]);
+
+        $this->createRooms($unitT2, [2]);
 
         $unitO1 = Unit::create([
             'unit_name' => 'Unit O-1',

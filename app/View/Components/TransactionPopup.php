@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class TransactionPopup extends Component
+class PopupTransaction extends Component
 {
     /**
      * Create a new component instance.
@@ -24,6 +24,6 @@ class TransactionPopup extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.transaction-popup');
+        return view('components.popup-transaction');
     }
 }
