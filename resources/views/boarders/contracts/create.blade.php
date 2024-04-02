@@ -3,7 +3,7 @@
     <x-page-heading :title="'New Lease Agreement for ' . $boarder->fullName" />
 
     <x-content-wrap class="max-w-3xl contract-form">
-        <form class="flex flex-col" action="{{ route('boarders.contract.store', $boarder) }}" method="POST"
+        <form class="flex flex-col" action="{{ route('boarders.contracts.store', $boarder) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
 

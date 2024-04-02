@@ -158,7 +158,7 @@
                 <x-input-error :messages="$errors->get('guardian_contact')" class="mt-2" />
             </div>
 
-            <button class=button-green" type="submit">
+            <button class="button-green" type="submit">
                 Add Boarder
             </button>
 
