@@ -11,7 +11,6 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
-        'transaction_for',
         'amount',
         'transaction_type',
         'payment_method',
@@ -29,6 +28,7 @@ class Transaction extends Model
 
     public static array $transactionType = [
         'rent' => 'Rent',
+        'transient' => 'Transient',
         'deposit' => 'Deposit',
         'public_utility' => 'Public Utility',
         'drinking_water' => 'Drinking Water',
