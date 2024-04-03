@@ -8,14 +8,6 @@
                 <h2 class="h2 bg-gray-500 py-2 text-white mt-0">Transient Info</h2>
                 <div class="grid grid-cols-3 gap-2 items-start">
 
-                    @if ($transient->id_card)
-                        <label>Identification: </label>
-                        <div class="col-span-2">
-                            <img src="{{ asset('images/' . $transient->id_card) }}" alt="{{ $transient->fullName }}"
-                                class="w-full">
-                        </div>
-                    @endif
-
                     <label>Gender: </label>
                     <div class="col-span-2">
                         <p>{{ Str::ucfirst($transient->gender) }}</p>
@@ -44,6 +36,11 @@
                     <div class="col-span-2">
                         <p>{{ $transient->fb_account_name ? $transient->fb_account_name : 'n/a' }}</p>
                     </div>
+
+                    @if ($transient->id_card)
+                        <label>Identification: </label>
+                        <x-image-box class="w-full" :src="asset('images/' . $transient->id_card)" :alt="$transient->fullName" />
+                    @endif
                 </div>
             </div>
             <x-notes-list />

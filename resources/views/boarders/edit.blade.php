@@ -97,10 +97,7 @@
                     <!-- Profile Picture -->
                     <div class="mb-4">
                         @if ($boarder->profile_pic)
-                            <div class="py-4 border w-1/4 border-slate-300">
-                                <img src="{{ asset('images/' . $boarder->profile_pic) }}"
-                                    alt="{{ $boarder->fullName }}">
-                            </div>
+                            <x-image-box class="mb-2" :src="asset('images/' . $boarder->profile_pic)" :alt="$boarder->fullName" />
                         @endif
                         <x-input-label for="profile_picture" :value="__('Profile Picture')" />
                         <input class="mt-1" type="file" id="profile_picture" name="profile_picture"
@@ -141,8 +138,8 @@
                     <!-- Name of Father -->
                     <div class="mb-4">
                         <x-input-label for="name_of_father" :value="__('Name of Father')" />
-                        <x-text-input id="name_of_father" class="block mt-1 w-full" type="text"
-                            name="name_of_father" :value="$boarder->name_of_father" />
+                        <x-text-input id="name_of_father" class="block mt-1 w-full" type="text" name="name_of_father"
+                            :value="$boarder->name_of_father" />
                         <x-input-error :messages="$errors->get('name_of_father')" class="mt-2" />
                     </div>
 
@@ -199,11 +196,14 @@
                     @endif
                 </div>
 
-                <button
-                    class="w-48 mx-auto rounded-md border border-transparent bg-green-500 px-2.5 py-1.5 text-center text-sm font-semibold text-white hover:text-green-500 shadow-sm hover:bg-green-200 ease-in duration-200 hover:border hover:border-green-500"
-                    type="submit">
-                    Update Boarder
-                </button>
+                <div class="mt-4 flex gap-2 justify-center">
+                    <button class="button-green" type="submit">
+                        Update Boarder
+                    </button>
+                    <x-link-button :href="route('boarders.show', $boarder)">
+                        Cancel
+                    </x-link-button>
+                </div>
 
             </form>
 
