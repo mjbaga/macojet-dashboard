@@ -2,50 +2,54 @@
 <x-app-layout>
     <x-page-heading :title="$transient->fullName" />
 
-    <x-content-wrap class="max-w-3xl">
-        <h2 class="h2 bg-gray-500 py-2 text-white mt-0">Transient Info</h2>
-        <div class="grid grid-cols-3 gap-2 items-start">
+    <x-content-wrap class="max-w-7xl">
+        <div class="flex gap-8">
+            <div class="basis-2/3">
+                <h2 class="h2 bg-gray-500 py-2 text-white mt-0">Transient Info</h2>
+                <div class="grid grid-cols-3 gap-2 items-start">
 
+                    @if ($transient->id_card)
+                        <label>Identification: </label>
+                        <div class="col-span-2">
+                            <img src="{{ asset('images/' . $transient->id_card) }}" alt="{{ $transient->fullName }}"
+                                class="w-full">
+                        </div>
+                    @endif
 
-            <label>Identification: </label>
-            <div class="col-span-2">
-                @if ($transient->id_card)
-                    <img src="{{ asset('images/' . $transient->id_card) }}" alt="{{ $transient->fullName }}"
-                        class="w-full">
-                @endif
+                    <label>Gender: </label>
+                    <div class="col-span-2">
+                        <p>{{ Str::ucfirst($transient->gender) }}</p>
+                    </div>
+
+                    <label>Date of birth: </label>
+                    <div class="col-span-2">
+                        <p>{{ $transient->formatted_date_of_birth }}</p>
+                    </div>
+
+                    <label>Origin Address:</label>
+                    <div class="col-span-2">{{ $transient->origin_address }}</div>
+
+                    <label>Contact Number: </label>
+                    <div class="col-span-2">
+                        @if ($transient->contact_number)
+                            <a href="tel:{{ $transient->contact_number }}" class="text-slate-500 hover:underline">
+                                {{ $transient->contact_number }}
+                            </a>
+                        @else
+                            <p>n/a</p>
+                        @endif
+                    </div>
+
+                    <label>Facebook Account Name: </label>
+                    <div class="col-span-2">
+                        <p>{{ $transient->fb_account_name ? $transient->fb_account_name : 'n/a' }}</p>
+                    </div>
+                </div>
             </div>
-
-            <label>Gender: </label>
-            <div class="col-span-2">
-                <p>{{ Str::ucfirst($transient->gender) }}</p>
-            </div>
-
-            <label>Date of birth: </label>
-            <div class="col-span-2">
-                <p>{{ $transient->formatted_date_of_birth }}</p>
-            </div>
-
-            <label>Origin Address:</label>
-            <div class="col-span-2">{{ $transient->origin_address }}</div>
-
-            <label>Contact Number: </label>
-            <div class="col-span-2">
-                @if ($transient->contact_number)
-                    <a href="tel:{{ $transient->contact_number }}" class="text-slate-500 hover:underline">
-                        {{ $transient->contact_number }}
-                    </a>
-                @else
-                    <p>n/a</p>
-                @endif
-            </div>
-
-            <label>Facebook Account Name: </label>
-            <div class="col-span-2">
-                <p>{{ $transient->fb_account_name ? $transient->fb_account_name : 'n/a' }}</p>
-            </div>
+            <x-notes-list />
         </div>
     </x-content-wrap>
-    <x-content-wrap class="max-w-3xl mt-4">
+    <x-content-wrap class="max-w-7xl mt-4">
         <div class="flex justify-between items-center">
             <h2 class="h2 py-2 my-0">Bookings</h2>
             <button type="button" class="button mt-2" data-bs-toggle="modal" data-bs-target="#booking-form">
@@ -53,9 +57,9 @@
             </button>
         </div>
         <div class="mt-4">
-            <x-entry-heading :headings="['Unit', 'Check In', 'Check Out', 'Number of Pax', 'Actions']" />
+            <x-entry-heading :headings="['Unit', 'Check In', 'Check Out', 'Number of Pax', 'Rate per person', 'Actions']" />
             @forelse ($transient->bookings as $booking)
-                <x-entry-row :columns="5">
+                <x-entry-row :columns="6">
                     <div>{{ $booking->unit->unit_name }}</div>
                     <div>
                         {{ \Carbon\Carbon::createFromFormat('Y-m-d', $booking->check_in)->toFormattedDateString() }}
@@ -65,6 +69,9 @@
                     </div>
                     <div class="text-center">
                         {{ $booking->number_of_pax }}
+                    </div>
+                    <div class="text-center">
+                        {{ $booking->rate }}
                     </div>
                     <div class="justify-self-end">
                         <form action="{{ route('transients.bookings.destroy', [$transient, $booking]) }}"
