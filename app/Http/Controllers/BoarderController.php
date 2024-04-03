@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\BoarderRequest;
 use App\Models\Boarder;
+use App\Http\Controllers\Traits\ImageSaveable;
+use App\Http\Requests\BoarderRequest;
 use App\Services\WorkerProfileService;
 use App\Services\StudentProfileService;
 use App\Services\RevieweeProfileService;
@@ -11,6 +12,8 @@ use App\Http\Controllers\BoarderProfileController;
 
 class BoarderController extends Controller
 {
+    use ImageSaveable;
+
     /**
      * Display a listing of the resource.
      */
@@ -34,15 +37,10 @@ class BoarderController extends Controller
      */
     public function store(BoarderRequest $request)
     {
-        $file = $request->file('profile_picture');
-        $path = $file->store('profile_pics', 'private');
+        $validatedData = $request->validated();
+        $saveData = $this->saveImage($request, $validatedData, 'profile_picture', 'profile_pic');
 
-        $validatedData = [
-            ...$request->validated(),
-            'profile_pic' => $path
-        ];
-
-        Boarder::create($validatedData); 
+        Boarder::create($saveData); 
 
         return redirect()->route('boarders.index')
             ->with('success', 'Successfully added new boarder!');
@@ -71,15 +69,9 @@ class BoarderController extends Controller
     public function update(BoarderRequest $request, Boarder $boarder)
     {
         $validatedData = $request->validated();
+        $saveData = $this->saveImage($request, $validatedData, 'profile_picture', 'profile_pic');
 
-        if($request->file('profile_picture')) {
-            $file = $request->file('profile_picture');
-            $path = $file->store('profile_pics', 'private');
-
-            $validatedData['profile_pic'] = $path;
-        }
-
-        $boarder->update($validatedData);
+        $boarder->update($saveData);
 
         $pc = new BoarderProfileController();
         $profile = $this->getProfileService($boarder);

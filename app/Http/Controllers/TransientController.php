@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Unit;
-use Carbon\Traits\Units;
+use App\Http\Controllers\Traits\ImageSaveable;
 use App\Models\Transient;
-use Illuminate\Http\Request;
 use App\Http\Requests\TransientRequest;
 
 class TransientController extends Controller
 {
+    use ImageSaveable;
+
     /**
      * Display a listing of the resource.
      */
@@ -31,15 +32,10 @@ class TransientController extends Controller
      */
     public function store(TransientRequest $request)
     {
-        $file = $request->file('identification');
-        $path = $file->store('transient_ids', 'private');
+        $validatedData = $request->validated();
+        $saveData = $this->saveImage($request, $validatedData, 'identification', 'id_card');
 
-        $validatedData = [
-            ...$request->validated(),
-            'id_card' => $path
-        ];
-
-        $transient = Transient::create($validatedData);
+        $transient = Transient::create($saveData);
 
         return redirect()->route('transients.show', $transient)
             ->with('success', 'Successfully added new transi!');
@@ -58,24 +54,33 @@ class TransientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Transient $transient)
     {
-        //
+        return view('transients.edit', ['transient' => $transient]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TransientRequest $request, Transient $transient)
     {
-        //
+        $validatedData = $request->validated();
+        $saveData = $this->saveImage($request, $validatedData, 'identification', 'id_card');
+
+        $transient->update($saveData);
+
+        return redirect()->route('transients.show', $transient)
+            ->with('success', 'Successfully updated transient!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Transient $transient)
     {
-        //
+        $transient->delete();
+
+        return redirect()->route('transients.index')
+            ->with('success', 'Successfully deleted transient!');
     }
 }
