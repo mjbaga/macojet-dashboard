@@ -1,6 +1,6 @@
 @section('page_title', 'Units')
 <x-app-layout>
-    <x-page-heading :title="'Units'" :actions="[['href' => 'units.create', 'title' => 'Create New Unit']]" />
+    <x-page-heading :title="'Units'" :actions="[['href' => route('units.create'), 'title' => 'Add New Unit']]" />
 
     <x-content-wrap class="max-w-7xl mt-12">
         <x-entry-heading :headings="['Unit Name', 'Unit Type', 'Last Updated', 'Actions']" />
