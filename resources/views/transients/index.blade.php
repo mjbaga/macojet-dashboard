@@ -34,5 +34,11 @@
             {{ $transients->links() }}
         </div>
 
+        @if ($transients)
+            <x-modal-confirm id="delete-modal" :title="'Confirm'">
+                Are you sure you want to delete this transient?
+            </x-modal-confirm>
+        @endif
+
     </x-content-wrap>
 </x-app-layout>
