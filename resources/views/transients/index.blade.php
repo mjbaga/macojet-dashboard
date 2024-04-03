@@ -1,4 +1,7 @@
 @section('page_title', 'Transients')
+@php
+    use App\Services\Utils;
+@endphp
 <x-app-layout>
     <x-page-heading :title="'Transients'" :actions="[['href' => route('transients.create'), 'title' => 'Add New Transient']]" />
 
@@ -15,14 +18,14 @@
                 <div>{{ $transient->status }}</div>
                 <div>
                     @if ($transient->latestBooking)
-                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $transient->latestBooking->check_in)->toFormattedDateString() }}
+                        {{ Utils::dateToStringFormat($transient->latestBooking->check_in) }}
                     @else
                         N/A
                     @endif
                 </div>
                 <div>
                     @if ($transient->latestBooking)
-                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $transient->latestBooking->check_out)->toFormattedDateString() }}
+                        {{ Utils::dateToStringFormat($transient->latestBooking->check_out) }}
                     @else
                         N/A
                     @endif

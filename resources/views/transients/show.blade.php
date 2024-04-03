@@ -1,4 +1,7 @@
 @section('page_title', $transient->fullName)
+@php
+    use App\Services\Utils;
+@endphp
 <x-app-layout>
     <x-page-heading :title="$transient->fullName" :actions="[['href' => route('transients.edit', $transient), 'title' => 'Edit Transient']]" />
 
@@ -59,10 +62,10 @@
                 <x-entry-row :columns="6">
                     <div>{{ $booking->unit->unit_name }}</div>
                     <div>
-                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $booking->check_in)->toFormattedDateString() }}
+                        {{ Utils::dateToStringFormat($booking->check_in) }}
                     </div>
                     <div>
-                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $booking->check_out)->toFormattedDateString() }}
+                        {{ Utils::dateToStringFormat($booking->check_out) }}
                     </div>
                     <div class="text-center">
                         {{ $booking->number_of_pax }}
