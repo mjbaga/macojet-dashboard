@@ -58,6 +58,7 @@ Route::middleware('auth')->group(function () {
             $trail
                 ->parent('dashboard')
                 ->push(__('Boarders'), route('boarders.index'))
+                ->push(__($boarder->fullName), route('boarders.show', $boarder))
                 ->push(__('Edit'), route('boarders.edit', $boarder))
         );
 
@@ -95,7 +96,8 @@ Route::middleware('auth')->group(function () {
         ->breadcrumbs(fn (Trail $trail, $transient) => 
             $trail
                 ->parent('dashboard')
-                ->push(__('transients'), route('transients.index'))
+                ->push(__('Transients'), route('transients.index'))
+                ->push(__($transient->fullName), route('transients.show', $transient))
                 ->push(__('Edit'), route('transients.edit', $transient))
         );
 
