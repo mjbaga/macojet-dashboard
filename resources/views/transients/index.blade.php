@@ -3,17 +3,30 @@
     <x-page-heading :title="'Transients'" :actions="[['href' => route('transients.create'), 'title' => 'Add New Transient']]" />
 
     <x-content-wrap class="max-w-7xl">
-        <x-entry-heading :headings="['Name', 'Contact', 'Check In', 'Check Out', 'Actions']" />
+        <x-entry-heading :headings="['Name', 'Contact', 'Status', 'Check In', 'Check Out', 'Actions']" />
         @forelse ($transients as $transient)
-            <x-entry-row :columns="5">
+            <x-entry-row :columns="6">
                 <div>
                     <a href="{{ route('transients.show', $transient) }}" class="text-slate-500">
                         {{ $transient->fullName }}
                     </a>
                 </div>
                 <div>{{ $transient->contact_number }}</div>
-                <div>{{ $transient->check_in }}</div>
-                <div>{{ $transient->check_out }}</div>
+                <div>{{ $transient->status }}</div>
+                <div>
+                    @if ($transient->latestBooking)
+                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $transient->latestBooking->check_in)->toFormattedDateString() }}
+                    @else
+                        N/A
+                    @endif
+                </div>
+                <div>
+                    @if ($transient->latestBooking)
+                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $transient->latestBooking->check_out)->toFormattedDateString() }}
+                    @else
+                        N/A
+                    @endif
+                </div>
                 <div class="flex gap-2 justify-end">
                     <x-link-button :href="route('transients.edit', $transient->id)">Edit</x-link-button>
                     <form action="{{ route('transients.destroy', $transient) }}" method="POST">

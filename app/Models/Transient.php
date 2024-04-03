@@ -43,4 +43,29 @@ class Transient extends Model
     {
         return $query->bookings()->orderBy('check_in', 'desc')->first();
     }
+
+    public function getLatestBookingAttribute(): Booking|null
+    {
+        return $this->bookings()->orderBy('check_in', 'desc')->first();
+    }
+
+    public function getStatusAttribute(): string
+    {
+        if($this->bookings()->count() === 0) {
+            return 'No bookings yet';
+        }
+
+        $now = Carbon::now();
+        $latestBooking = $this->latestBooking;
+
+        if ($latestBooking->check_in <= $now && $latestBooking->check_out >= $now) {
+            return 'Active';
+        } else if ($latestBooking->check_in > $now) {
+            return 'Upcoming booking';
+        } else if ($latestBooking->check_out < $now) {
+            return 'Bookings finished';
+        }
+
+        return 'No current booking';
+    }
 }
