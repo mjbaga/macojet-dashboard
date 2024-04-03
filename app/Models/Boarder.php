@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Presenters\Noteable;
 use Carbon\Carbon;
 use App\Presenters\Personable;
 use App\Presenters\Transactable;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Boarder extends Model
 {
-    use HasFactory, SoftDeletes, Personable, Transactable;
+    use HasFactory, SoftDeletes, Personable, Transactable, Noteable;
 
     public static array $type = ['student', 'working', 'reviewee'];
 
