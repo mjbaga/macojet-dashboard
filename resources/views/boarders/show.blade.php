@@ -119,10 +119,13 @@
                     <x-student-info :boarder="$boarder" />
                 @endif
             </div>
-            <x-notes-list />
+
+            <x-notes-list :notes="$boarder->notes" />
         </div>
 
     </x-content-wrap>
+
+    <x-popup-notes-form :noteable-id="$boarder->id" :noteable-type="'App\Models\Boarder'" />
 
     @if ($boarder->contracts)
         <div class="flex items-start max-w-7xl mx-auto gap-4">

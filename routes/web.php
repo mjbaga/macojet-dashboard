@@ -4,6 +4,7 @@ use Tabuna\Breadcrumbs\Trail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\NotesController;
 use App\Http\Controllers\BoarderController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ProfileController;
@@ -178,6 +179,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/boarders/{boarder}/transactions', [TransactionController::class, 'store'])
         ->name('boarders.transactions.store');
+
+    Route::resource('notes', NotesController::class)->except(['index', 'show', 'create', 'edit']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

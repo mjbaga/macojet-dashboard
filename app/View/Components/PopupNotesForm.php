@@ -6,13 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class NotesList extends Component
+class PopupNotesForm extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public $notes
+        public int $noteableId,
+        public string $noteableType
     )
     {
         //
@@ -23,6 +24,6 @@ class NotesList extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.notes-list');
+        return view('components.popup-notes-form');
     }
 }

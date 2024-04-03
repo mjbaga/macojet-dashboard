@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('noteable_type');
             $table->integer('noteable_id');
             $table->dateTime('reminder_alarm')->nullable();
+            $table->boolean('resolved')->default(false);
 
             $table->timestamps();
         });

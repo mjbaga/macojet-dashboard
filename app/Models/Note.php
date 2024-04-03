@@ -19,8 +19,8 @@ class Note extends Model
     ];
 
     public static array $types = [
-        'note',
-        'reminder',
+        'note' => 'Note',
+        'reminder' => 'Reminder',
     ];
 
     public function noteable(): MorphTo

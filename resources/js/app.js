@@ -7,6 +7,7 @@ import ContractPage from './components/ContractPage';
 import Alpine from 'alpinejs';
 
 import { confirmModal } from './utilities';
+import NotesFormComponent from './components/NotesFormComponent';
 
 window.Alpine = Alpine;
 
@@ -23,6 +24,12 @@ Alpine.store('boarder-tabs', {
 
     if(contractPage) {
         new ContractPage();
+    }
+
+    const notesForm = document.querySelector('#note-form');
+
+    if(notesForm) {
+        new NotesFormComponent();
     }
 
     const deleteButtons = document.querySelectorAll('.index-delete-btn');
