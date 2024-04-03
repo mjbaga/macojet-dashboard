@@ -1,6 +1,6 @@
 @section('page_title', 'Transients')
 <x-app-layout>
-    <x-page-heading :title="'Transients'" :actions="[['href' => 'transients.create', 'title' => 'Add New Transient']]" />
+    <x-page-heading :title="'Transients'" :actions="[['href' => route('transients.create'), 'title' => 'Add New Transient']]" />
 
     <x-content-wrap class="max-w-7xl">
         <x-entry-heading :headings="['Name', 'Contact', 'Check In', 'Check Out', 'Actions']" />

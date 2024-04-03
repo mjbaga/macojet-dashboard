@@ -1,6 +1,6 @@
 @section('page_title', $transient->fullName)
 <x-app-layout>
-    <x-page-heading :title="$transient->fullName" />
+    <x-page-heading :title="$transient->fullName" :actions="[['href' => route('transients.edit', $transient), 'title' => 'Edit Transient']]" />
 
     <x-content-wrap class="max-w-7xl">
         <div class="flex gap-8">

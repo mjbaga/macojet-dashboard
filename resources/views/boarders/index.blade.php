@@ -1,6 +1,6 @@
 @section('page_title', 'Boarders')
 <x-app-layout>
-    <x-page-heading :title="'Boarders'" :actions="[['href' => 'boarders.create', 'title' => 'Create New Boarder']]" />
+    <x-page-heading :title="'Boarders'" :actions="[['href' => route('boarders.create'), 'title' => 'Add New Boarder']]" />
 
     <x-content-wrap class="max-w-7xl">
         <x-entry-heading :headings="['Name', 'Email', 'Last Updated', 'Status', 'Actions']" />

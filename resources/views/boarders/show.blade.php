@@ -1,6 +1,6 @@
 @section('page_title', $boarder->fullName)
 <x-app-layout>
-    <x-page-heading :title="$boarder->fullName" />
+    <x-page-heading :title="$boarder->fullName" :actions="[['href' => route('boarders.edit', $boarder), 'title' => 'Edit Boarder']]" />
 
     <x-content-wrap class="max-w-7xl py-0">
 

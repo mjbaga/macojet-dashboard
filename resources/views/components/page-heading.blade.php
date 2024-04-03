@@ -15,7 +15,7 @@
         @if ($actions)
             <div class="actions">
                 @foreach ($actions as $link)
-                    <x-link-button :href="route($link['href'])">
+                    <x-link-button :href="$link['href']">
                         {{ $link['title'] }}
                     </x-link-button>
                 @endforeach
