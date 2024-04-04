@@ -29,8 +29,10 @@ class NotesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Note $note)
     {
-        //
+        $note->delete();
+
+        return redirect()->back()->with('success', 'Note deleted!');
     }
 }

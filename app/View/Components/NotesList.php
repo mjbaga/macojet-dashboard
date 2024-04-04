@@ -12,7 +12,9 @@ class NotesList extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public $notes
+        public $notes,
+        public $noteableId,
+        public $noteableType,
     )
     {
         //

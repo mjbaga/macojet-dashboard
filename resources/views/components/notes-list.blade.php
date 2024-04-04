@@ -8,21 +8,41 @@
         @forelse ($notes as $note)
             <div class="border-b border-slate-300 p-2 bg-green-100">
 
-                <div class="flex justify-between">
+                <div class="flex justify-between gap-2">
                     <div class="flex flex-col">
                         <p class="text-xs text-slate-500">{{ $note->created_at->diffForHumans() }}</p>
                         <p>{{ $note->content }}</p>
                     </div>
-                    <button class="button" data-bs-toggle="modal" data-bs-target="#note-form">Edit</button>
+                    <div class="flex gap-2">
+                        <button class="btn btn-dark btn-sm self-start" data-bs-toggle="modal"
+                            data-bs-target="#note-form" title="Edit">
+                            <i class="bi bi-pencil-square"></i>
+                            <span class="vh">Edit</span>
+                        </button>
+                        <form action="{{ route('notes.destroy', $note) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-danger btn-sm index-delete-btn" data-bs-toggle="modal"
+                                data-bs-target="#delete-modal" title="Delete">
+                                <i class="bi bi-trash3-fill"></i>
+                                <span class="vh">Delete</span>
+                            </button>
+                        </form>
+                    </div>
                 </div>
 
             </div>
+
+            <x-modal-confirm id="delete-modal" :title="'Confirm'">
+                Are you sure you want to delete this note?
+            </x-modal-confirm>
+
         @empty
             <div class="grid py-8 place-items-center bg-green-200">
                 <p>No notes yet.</p>
             </div>
         @endforelse
-
-
     </div>
+
+    <x-popup-notes-create :noteable-id="$noteableId" :noteable-type="$noteableType" />
 </div>

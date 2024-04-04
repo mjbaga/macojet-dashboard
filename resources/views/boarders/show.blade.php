@@ -27,9 +27,8 @@
                 </div>
             </div>
             <div class="basis-1/2">
-                <h2 class="h2 bg-gray-500 py-2 text-white mt-0">Personal Info</h2>
-                <div class="grid grid-cols-2 gap-2 items-start">
 
+                <x-info-table :title="'Personal Info'">
                     <label>Nickname: </label>
                     <p>{{ $boarder->nickname ? $boarder->nickname : 'n/a' }}</p>
 
@@ -42,12 +41,9 @@
 
                     <label>Provincial Address:</label>
                     <div>{{ $boarder->provincial_address }}</div>
+                </x-info-table>
 
-                </div>
-
-                <h2 class="h2 bg-gray-500 py-2 text-white">Contact Info</h2>
-                <div class="grid grid-cols-2 gap-2">
-
+                <x-info-table :title="'Contact Info'">
                     <label>Email: </label>
 
                     @if ($boarder->email)
@@ -105,27 +101,23 @@
                     @else
                         <p>n/a</p>
                     @endif
-                </div>
+                </x-info-table>
 
-                <h2 class="h2 bg-gray-500 py-2 text-white">
-                    {{ Str::ucfirst($boarder->profile_type) }} Profile
-                </h2>
-
-                @if ($boarder->profile_type === 'working')
-                    <x-worker-info :boarder="$boarder" />
-                @elseif($boarder->profile_type === 'reviewee')
-                    <x-reviewee-info :boarder="$boarder" />
-                @elseif($boarder->profile_type === 'student')
-                    <x-student-info :boarder="$boarder" />
-                @endif
+                <x-info-table :title="Str::ucfirst($boarder->profile_type) . ' Profile'">
+                    @if ($boarder->profile_type === 'working')
+                        <x-worker-info :boarder="$boarder" />
+                    @elseif($boarder->profile_type === 'reviewee')
+                        <x-reviewee-info :boarder="$boarder" />
+                    @elseif($boarder->profile_type === 'student')
+                        <x-student-info :boarder="$boarder" />
+                    @endif
+                </x-info-table>
             </div>
 
-            <x-notes-list :notes="$boarder->notes" />
+            <x-notes-list :notes="$boarder->notes" :noteable-id="$boarder->id" :noteable-type="get_class($boarder)" />
         </div>
 
     </x-content-wrap>
-
-    <x-popup-notes-form :noteable-id="$boarder->id" :noteable-type="'App\Models\Boarder'" />
 
     @if ($boarder->contracts)
         <div class="flex items-start max-w-7xl mx-auto gap-4">
