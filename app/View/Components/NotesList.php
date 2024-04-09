@@ -8,16 +8,21 @@ use Illuminate\View\Component;
 
 class NotesList extends Component
 {
+    public $notes;
+    public $noteableId;
+    public $model;
+    public $noteableType;
+
     /**
      * Create a new component instance.
      */
-    public function __construct(
-        public $notes,
-        public $noteableId,
-        public $noteableType,
-    )
+    public function __construct($model)
     {
-        //
+        $this->model = $model;
+        $this->notes = $model->notes;
+        $this->noteableId = $model->id;
+        $this->noteableType = get_class($model);
+
     }
 
     /**

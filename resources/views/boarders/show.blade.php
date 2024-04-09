@@ -114,7 +114,7 @@
                 </x-info-table>
             </div>
 
-            <x-notes-list :notes="$boarder->notes" :noteable-id="$boarder->id" :noteable-type="get_class($boarder)" />
+            <x-notes-list :model="$boarder" />
         </div>
 
     </x-content-wrap>

@@ -32,17 +32,16 @@
                 </div>
 
             </div>
-
-            <x-modal-confirm id="delete-modal" :title="'Confirm'">
-                Are you sure you want to delete this note?
-            </x-modal-confirm>
-
         @empty
             <div class="grid py-8 place-items-center bg-green-200">
                 <p>No notes yet.</p>
             </div>
         @endforelse
+
+        <x-modal-confirm id="delete-modal" :title="'Confirm'">
+            Are you sure you want to delete this note?
+        </x-modal-confirm>
     </div>
 
-    <x-popup-notes-create :noteable-id="$noteableId" :noteable-type="$noteableType" />
+    <livewire:popup-notes-create :model="$model" :noteable-id="$noteableId" :noteable-type="$noteableType" />
 </div>

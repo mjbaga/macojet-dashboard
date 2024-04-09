@@ -27,4 +27,9 @@ class Note extends Model
     {
         return $this->morphTo(__FUNCTION__, 'noteable_type', 'noteable_id');
     }
+
+    public function getReminderAlarmAttribute($value)
+    {
+        return \Carbon\Carbon::create($value)->format('Y-m-d\TH:i:s');
+    }
 }

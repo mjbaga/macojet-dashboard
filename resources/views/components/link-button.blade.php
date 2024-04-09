@@ -1,3 +1,3 @@
-<a href="{{ $href }}" {{ $attributes->class('button btn-primary') }}>
+<a href="{{ $href }}" {{ $attributes->merge(['class' => 'btn btn-dark', 'title' => $title]) }}>
     {{ $slot }}
 </a>

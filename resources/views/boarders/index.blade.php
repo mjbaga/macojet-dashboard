@@ -15,13 +15,17 @@
                 <div>{{ $boarder->updated_at->diffForHumans() }}</div>
                 <div>{{ $boarder->isCurrentBoarder() ? 'Current' : 'Ended' }}</div>
                 <div class="flex gap-2 justify-end">
-                    <x-link-button :href="route('boarders.edit', $boarder->id)">Edit</x-link-button>
+                    <x-link-button class="btn-sm" :href="route('boarders.edit', $boarder->id)" title="Edit">
+                        <i class="bi bi-pencil-square"></i>
+                        <span class="vh">Edit</span>
+                    </x-link-button>
                     <form action="{{ route('boarders.destroy', $boarder) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="button" class="btn btn-danger index-delete-btn" data-bs-toggle="modal"
-                            data-bs-target="#delete-modal">
-                            Delete
+                        <button type="button" class="btn btn-sm btn-danger index-delete-btn" data-bs-toggle="modal"
+                            data-bs-target="#delete-modal" title="Delete">
+                            <i class="bi bi-trash3-fill"></i>
+                            <span class="vh">Delete</span>
                         </button>
                     </form>
                 </div>
