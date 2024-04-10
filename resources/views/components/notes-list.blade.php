@@ -7,15 +7,13 @@
 
         @forelse ($notes as $note)
             <div class="border-b border-slate-300 p-2 bg-green-100">
-
                 <div class="flex justify-between gap-2">
                     <div class="flex flex-col">
                         <p class="text-xs text-slate-500">{{ $note->created_at->diffForHumans() }}</p>
                         <p>{{ $note->content }}</p>
                     </div>
                     <div class="flex gap-2">
-                        <button class="btn btn-dark btn-sm self-start" data-bs-toggle="modal"
-                            data-bs-target="#note-form" title="Edit">
+                        <button class="btn btn-dark btn-sm self-start" @click="showEditForm" title="Edit">
                             <i class="bi bi-pencil-square"></i>
                             <span class="vh">Edit</span>
                         </button>
@@ -30,7 +28,6 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         @empty
             <div class="grid py-8 place-items-center bg-green-200">
@@ -43,5 +40,6 @@
         </x-modal-confirm>
     </div>
 
-    <livewire:popup-notes-create :model="$model" :noteable-id="$noteableId" :noteable-type="$noteableType" />
+    <livewire:popup-notes-create :model="$model" />
+    <livewire:popup-notes-edit :model="$model" />
 </div>

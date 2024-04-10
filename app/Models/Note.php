@@ -16,6 +16,7 @@ class Note extends Model
         'noteable_type',
         'noteable_id',
         'reminder_alarm',
+        'resolved'
     ];
 
     public static array $types = [

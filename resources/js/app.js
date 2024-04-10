@@ -1,21 +1,9 @@
 import './bootstrap';
-import '../sass/app.scss'
 
 import ContractPage from './components/ContractPage';
 
-import Alpine from 'alpinejs';
-
 import { confirmModal } from './utilities';
 import NotesFormComponent from './components/NotesFormComponent';
-
-window.Alpine = Alpine;
-
-Alpine.start();
-
-Alpine.store('boarder-tabs', {
-    current: 'personal',
-    items: ['personal', 'contact', 'type']
-});
 
 (()=> {
 

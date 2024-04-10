@@ -114,7 +114,7 @@
                 </x-info-table>
             </div>
 
-            <x-notes-list :model="$boarder" />
+            <livewire-notes-list :model="$boarder" />
         </div>
 
     </x-content-wrap>

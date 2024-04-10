@@ -9,6 +9,8 @@ export default {
         './resources/views/**/*.blade.php',
         './resources/**/*.blade.php',
         './resources/**/*.js',
+        './vendor/wire-elements/pro/config/wire-elements-pro.php',
+        './vendor/wire-elements/pro/**/*.blade.php',
     ],
 
     theme: {

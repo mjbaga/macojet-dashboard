@@ -19,5 +19,11 @@ export default class NotesFormComponent {
         //         reminderAlarm.classList.add('hidden');
         //     }
         // });
+
+        // document.addEventListener('livewire:init', () => {
+        //     Livewire.on('openModal', (event) => {
+        //         alert('open');
+        //     });
+        //  });
     }
 }
