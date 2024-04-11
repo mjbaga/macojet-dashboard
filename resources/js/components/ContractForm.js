@@ -2,7 +2,7 @@
 
 import { confirmModal } from "../utilities";
 
-export default class ContractPage {
+export default class ContractForm {
 
     constructor() {
     

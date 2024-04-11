@@ -1,17 +1,17 @@
 import './bootstrap';
 
-import ContractPage from './components/ContractPage';
+import ContractForm from './components/ContractForm';
 
 import { confirmModal } from './utilities';
 import NotesFormComponent from './components/NotesFormComponent';
 
 (()=> {
 
-    const contractPage = document.querySelector('.contract-form');
+    // const contractForm = document.querySelector('.contract-form');
 
-    if(contractPage) {
-        new ContractPage();
-    }
+    // if(contractForm) {
+        // new ContractForm();
+    // }
 
     const notesForm = document.querySelector('#note-form');
 
