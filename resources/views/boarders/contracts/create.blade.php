@@ -47,6 +47,30 @@
                 <x-input-error :messages="$errors->get('end_date')" class="mt-2" />
             </div>
 
+            <!-- Agreed Payment -->
+            <div class="mb-4">
+                <x-input-label for="agreed_payment" :value="__('Agreed Payment Amount')" />
+                <x-text-input id="agreed_payment" class="block mt-1 w-full" type="number" name="agreed_payment"
+                    :value="old('agreed_payment') ?? 0" required />
+                <x-input-error :messages="$errors->get('agreed_payment')" class="mt-2" />
+            </div>
+
+            <!-- Terms of Payment -->
+            <div class="mb-4">
+                <x-input-label for="terms_of_payment" :value="__('Terms of Payment')" />
+                <x-select name="terms_of_payment" id="terms_of_payment">
+                    @php
+                        $default = old('terms_of_payment') ? old('terms_of_payment') : 'monthly';
+                    @endphp
+
+                    @foreach (App\Models\LeaseAgreement::$terms as $index => $term)
+                        <option value="{{ $term }}" @selected($term === $default)>{{ Str::ucfirst($term) }}
+                        </option>
+                    @endforeach
+                </x-select>
+                <x-input-error :messages="$errors->get('terms_of_payment')" class="mt-2" />
+            </div>
+
             <!-- Contract Document -->
             <div class="mb-4">
                 <x-input-label for="contract_doc" :value="__('Contract Document')" />

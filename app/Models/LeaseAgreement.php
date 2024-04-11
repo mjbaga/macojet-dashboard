@@ -17,6 +17,8 @@ class LeaseAgreement extends Model
         'room_id',
         'start_date',
         'end_date',
+        'agreed_payment',
+        'terms_of_payment',
         'contract_document',
         'includes_city_services',
         'months_deposit',
@@ -25,6 +27,8 @@ class LeaseAgreement extends Model
         'will_renew',
         'active'
     ];
+
+    public static array $terms = ['monthly', 'quarterly', 'semi-annually', 'annually'];
 
     public function boarder(): BelongsTo
     {
@@ -54,6 +58,11 @@ class LeaseAgreement extends Model
     public function getStatusAttribute()
     {    
         return $this->isActive() ? 'Active' : 'Ended';
+    }
+
+    public function getFormattedAgreedPaymentAttribute()
+    {
+        return '₱' . number_format($this->agreed_payment, 2);
     }
 
     public function isActive()

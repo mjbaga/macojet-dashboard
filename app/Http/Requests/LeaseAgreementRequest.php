@@ -26,6 +26,8 @@ class LeaseAgreementRequest extends FormRequest
             'room_id' => 'required|integer',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
+            'agreed_payment' => 'required|numeric',
+            'terms_of_payment' => 'required|string',
             'contract_doc' => 'mimes:pdf,doc,docx|nullable',
             'months_deposit' => 'required|integer',
             'deposit_amount' => 'required|integer',

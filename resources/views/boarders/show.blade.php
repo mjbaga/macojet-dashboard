@@ -129,19 +129,21 @@
                     </x-link-button>
                 </div>
                 <div class="mt-4">
-                    <x-entry-heading :headings="['Unit', 'Room', 'Start', 'End', 'Status', 'Actions']" />
+                    <x-entry-heading :headings="['Unit', 'Room', 'Start', 'End', 'Status', 'Terms', 'Recurring Payment', 'Actions']" />
                     @forelse ($boarder->contracts as $contract)
-                        <x-entry-row :columns="6">
+                        <x-entry-row :columns="8">
                             <div>{{ $contract->unit->unit_name }}</div>
                             <div>{{ $contract->room->room_number }}</div>
                             <div>{{ $contract->formatted_start_date }}</div>
                             <div>{{ $contract->formatted_end_date }}</div>
                             <div>{{ $contract->status }}</div>
+                            <div>{{ Str::ucfirst($contract->terms_of_payment) }}</div>
+                            <div>{{ $contract->formatted_agreed_payment }}</div>
                             <div class="justify-self-end">
-                                <x-link-button :href="route('boarders.contracts.edit', [$boarder, $contract])">
-                                    Edit
+                                <x-link-button class="btn-sm" :href="route('boarders.contracts.edit', [$boarder, $contract])">
+                                    <i class="bi bi-pencil-square"></i>
+                                    <span class="vh">Edit</span>
                                 </x-link-button>
-
                             </div>
                         </x-entry-row>
                     @empty
@@ -152,25 +154,27 @@
 
                 </div>
             </x-content-wrap>
-            <x-content-wrap class="grow-1 w-1/3 py-0 mt-8 mx-0">
-                <div class="flex justify-between items-center">
-                    <h2 class="h2 py-2 my-0">Transactions</h2>
-                    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#transaction-form">
+        </div>
+    @endif
+    <div class="flex items-start max-w-7xl mx-auto gap-4">
+        <x-content-wrap class="grow-1 w-full py-0 mt-8 mx-0">
+            <div class="flex justify-between items-center">
+                <h2 class="h2 py-2 my-0">Transactions</h2>
+                <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#transaction-form">
+                    New Transaction
+                </button>
+            </div>
+            <div class="border border-slate-500 mt-2">
+                <div class="grid py-8 place-items-center bg-green-200">
+                    <p>No Transactions yet.</p>
+                    <button type="button" class="button mt-2" data-bs-toggle="modal"
+                        data-bs-target="#transaction-form">
                         New Transaction
                     </button>
                 </div>
-                <div class="border border-slate-500 mt-2">
-                    <div class="grid py-8 place-items-center bg-green-200">
-                        <p>No Transactions yet.</p>
-                        <button type="button" class="button mt-2" data-bs-toggle="modal"
-                            data-bs-target="#transaction-form">
-                            New Transaction
-                        </button>
-                    </div>
-                </div>
-            </x-content-wrap>
+            </div>
+        </x-content-wrap>
 
-            <x-popup-transaction :transactable-id="$boarder->id" :transactable-type="'App\Models\Boarder'" />
-        </div>
-    @endif
+        <x-popup-transaction :transactable-id="$boarder->id" :transactable-type="'App\Models\Boarder'" />
+    </div>
 </x-app-layout>

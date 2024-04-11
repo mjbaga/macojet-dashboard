@@ -16,7 +16,7 @@ class LeaseAgreementController extends Controller
      */
     public function create(Boarder $boarder)
     {
-        $units = Unit::boardingType('boarding')->get();
+        $units = Unit::unitType('boarding')->get();
         
         return view('boarders.contracts.create', [
             'boarder' => $boarder,
@@ -60,7 +60,7 @@ class LeaseAgreementController extends Controller
      */
     public function edit(Boarder $boarder, LeaseAgreement $contract)
     {
-        $units = Unit::boardingType('boarding')->get();
+        $units = Unit::unitType('boarding')->get();
 
         return view('boarders.contracts.edit', [
             'boarder' => $boarder,
