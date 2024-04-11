@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Presenters\Noteable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,7 +15,7 @@ use \Carbon\Carbon;
 
 class Transient extends Model
 {
-    use HasFactory, SoftDeletes, Personable, Transactable;
+    use HasFactory, SoftDeletes, Personable, Transactable, Noteable;
 
     protected $fillable = [
         'first_name',

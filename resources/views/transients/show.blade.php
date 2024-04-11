@@ -46,7 +46,7 @@
                     @endif
                 </div>
             </div>
-            <x-notes-list />
+            <livewire-notes-list :model="$transient" />
         </div>
     </x-content-wrap>
     <x-content-wrap class="max-w-7xl mt-4">
