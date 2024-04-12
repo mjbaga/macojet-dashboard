@@ -1,7 +1,6 @@
-<div class="contract-form max-w-7xl p-4">
+<div class="contract-form max-w-7xl p-4" wire:ignore.self>
+    <h2 class="h2">Lease Agreement/Contract</h2>
     <form class="grid grid-cols-2 gap-x-8 gap-y-4" action="addContract" enctype="multipart/form-data">
-        <h2 class="h2 col-span-2">Lease Agreement/Contract</h2>
-
         <!-- Unit Select -->
         <div>
             <x-input-label for="unit_id" :value="__('Select Unit')" />

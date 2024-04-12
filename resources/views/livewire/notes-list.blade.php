@@ -7,7 +7,7 @@
             @endphp
 
             <button class="button"
-                wire:click="$dispatch('openModal', { component: 'notes-modal', arguments: { noteableId: {{ $model->id }}, noteableType: '{{ $noteableType }}'
+                wire:click.prevent="$dispatch('openModal', { component: 'notes-modal', arguments: { noteableId: {{ $model->id }}, noteableType: '{{ $noteableType }}'
                 } })">
                 Create Note
             </button>

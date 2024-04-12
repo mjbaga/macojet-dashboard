@@ -44,4 +44,9 @@ class NotesModal extends ModalComponent
     {
         return view('livewire.notes-form');
     }
+
+    public static function modalMaxWidth(): string
+    {
+        return 'md';
+    }
 }
