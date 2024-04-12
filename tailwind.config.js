@@ -9,8 +9,6 @@ export default {
         './resources/views/**/*.blade.php',
         './resources/**/*.blade.php',
         './resources/**/*.js',
-        './vendor/wire-elements/pro/config/wire-elements-pro.php',
-        './vendor/wire-elements/pro/**/*.blade.php',
     ],
 
     theme: {
@@ -20,7 +18,12 @@ export default {
             },
         },
     },
-
+    safelist: [
+        {
+          pattern: /max-w-(sm|md|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl)/,
+          variants: ['sm', 'md', 'lg', 'xl', '2xl']
+        }
+    ],
     plugins: [forms],
     purge: false,
 };

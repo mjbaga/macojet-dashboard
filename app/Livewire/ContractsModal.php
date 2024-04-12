@@ -33,4 +33,9 @@ class ContractsModal extends ModalComponent
     {
         return view('livewire.contracts-form');
     }
+
+    public static function modalMaxWidth(): string
+    {
+        return '3xl';
+    }
 }

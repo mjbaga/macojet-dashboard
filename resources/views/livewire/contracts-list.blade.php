@@ -3,7 +3,7 @@
         <div class="flex justify-between items-center">
             <h2 class="h2 py-2 my-0">Contracts</h2>
             <button class="btn btn-dark"
-                wire:click="$dispatch('openModal', { component: 'contracts-modal', arguments: { boarder: {{ $boarder->id }} } })">
+                wire:click.prevent="$dispatch('openModal', { component: 'contracts-modal', arguments: { boarder: {{ $boarder->id }} } })">
                 New Contract
             </button>
         </div>
