@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Boarder;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class ContractsList extends Component
 {
@@ -20,4 +21,7 @@ class ContractsList extends Component
     {
         return view('livewire.contracts-list');
     }
+
+    #[On('refresh-list')]
+    public function refresh() {}
 }

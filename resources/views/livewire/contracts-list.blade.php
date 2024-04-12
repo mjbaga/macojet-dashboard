@@ -19,10 +19,11 @@
                     <div>{{ Str::ucfirst($contract->terms_of_payment) }}</div>
                     <div>{{ $contract->formatted_agreed_payment }}</div>
                     <div class="justify-self-end">
-                        <x-link-button class="btn-sm" :href="route('boarders.contracts.edit', [$boarder, $contract])">
+                        <button class="btn btn-sm btn-dark"
+                            wire:click="$dispatch('openModal', { component: 'contracts-modal', arguments: { contract: {{ $contract->id }} }})">
                             <i class="bi bi-pencil-square"></i>
                             <span class="vh">Edit</span>
-                        </x-link-button>
+                        </button>
                     </div>
                 </x-entry-row>
             @empty

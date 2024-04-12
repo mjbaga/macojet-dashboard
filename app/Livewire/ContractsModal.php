@@ -26,9 +26,29 @@ class ContractsModal extends ModalComponent
 
     public function mount(Boarder $boarder): void
     {
-        $this->boarder = $boarder;
+        if($this->contract && $this->contract->exists) {
+            $this->form->setContract($this->contract);
+            $this->getRooms($this->contract->unit_id);
+            $this->heading = 'Edit';
+        } else {
+            $this->heading = 'Add';
+            $this->boarder = $boarder;
+        }
+
         $this->units = Unit::unitType('boarding')->get();
+        
     }
+
+    public function processContract()
+    {
+        $this->form->save();
+        $this->closeModal();
+        $this->dispatch('refresh-list');
+
+        // $modelClass = Str::plural(strtolower($this->noteableType));
+        // return redirect()->route($modelClass . '.show', $this->noteableId)->with('success', "Successfully {$this->heading}ed note.");
+    }
+
     public function render(): View
     {
         return view('livewire.contracts-form');
