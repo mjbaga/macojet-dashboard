@@ -1,10 +1,16 @@
 <div class="contract-form max-w-7xl p-4" wire:ignore.self>
     <h2 class="h2">{{ $heading === 'Edit' ? 'Edit' : 'New' }} Lease Agreement/Contract</h2>
+
+    @forelse($errors as $error)
+        <li>{{ $error }} </li>
+    @empty
+    @endforelse
+
     <form wire:submit.prevent="processContract" class="grid grid-cols-2 gap-x-8 gap-y-4" enctype="multipart/form-data">
         <!-- Unit Select -->
         <div>
             <x-input-label for="unit_id" :value="__('Select Unit')" />
-            <x-select name="form.unit_id" id="unit_id" wire:model="form.unit_id"
+            <x-select name="unit_id" id="unit_id" wire:model="form.unit_id"
                 @change="$wire.getRooms($event.target.options[$event.target.selectedIndex].value)">
                 <option>Select Unit</option>
                 @foreach ($units as $unit)
@@ -19,7 +25,7 @@
         <!-- Room Select -->
         <div>
             <x-input-label for="room_id" :value="__('Select Room')" />
-            <x-select name="form.room_id" id="room_id" wire:model="form.room_id">
+            <x-select name="room_id" id="room_id" wire:model="form.room_id">
                 @forelse ($rooms as $room)
                     <option value="{{ $room->id }}">
                         {{ $room->room_number }}
@@ -34,15 +40,15 @@
         <!-- Start Date -->
         <div>
             <x-input-label for="start_date" :value="__('Start Date')" />
-            <input type="date" name="form.start_date" id="start_date" class="input-text"
-                value="{{ old('start_date') }}" wire:model="form.start_date">
+            <input type="date" name="start_date" id="start_date" class="input-text" value="{{ old('start_date') }}"
+                wire:model="form.start_date">
             <x-input-error :messages="$errors->get('form.start_date')" class="mt-2" />
         </div>
 
         <!-- End Date -->
         <div>
             <x-input-label for="end_date" :value="__('End Date')" />
-            <input type="date" name="form.end_date" id="end_date" class="input-text" value="{{ old('end_date') }}"
+            <input type="date" name="end_date" id="end_date" class="input-text" value="{{ old('end_date') }}"
                 wire:model="form.end_date">
             <x-input-error :messages="$errors->get('form.end_date')" class="mt-2" />
         </div>
@@ -55,8 +61,11 @@
                     $default = old('terms_of_payment') ? old('form.terms_of_payment') : 'monthly';
                 @endphp
 
+                <option>Select terms of payment</option>
+
                 @foreach (App\Models\LeaseAgreement::$terms as $index => $term)
-                    <option value="{{ $term }}" @selected($term === $default)>{{ Str::ucfirst($term) }}
+                    <option value="{{ $term }}">
+                        {{ Str::ucfirst($term) }}
                     </option>
                 @endforeach
             </x-select>
@@ -111,12 +120,12 @@
         @endif
 
         <!-- Contract Document -->
-        {{-- <div>
-            <x-input-label for="contract_doc" :value="__('Contract Document')" />
-            <input class="mt-1" type="file" id="contract_doc" name="contract_doc" accept=".doc,.docx,.pdf"
-                wire:model="form.contract_doc" />
-            <x-input-error :messages="$errors->get('contract_doc')" class="mt-2" />
-        </div> --}}
+        <div>
+            <x-input-label for="contract_document" :value="__('Contract Document')" />
+            <input class="mt-1" type="file" id="contract_document" name="contract_document"
+                accept=".doc,.docx,.pdf" wire:model="form.contract_document" />
+            <x-input-error :messages="$errors->get('contract_document')" class="mt-2" />
+        </div>
 
         <div class="flex col-span-2 justify-center my-4 gap-2">
             <button class="btn btn-success w-48" type="submit">

@@ -8,9 +8,12 @@ use App\Models\LeaseAgreement;
 use Illuminate\Contracts\View\View;
 use App\Livewire\Forms\ContractForm;
 use LivewireUI\Modal\ModalComponent;
+use Livewire\WithFileUploads;
 
 class ContractsModal extends ModalComponent
 {
+    use WithFileUploads;
+    
     public ContractForm $form;
     public Boarder $boarder;
     public ?LeaseAgreement $contract = null;
@@ -41,7 +44,7 @@ class ContractsModal extends ModalComponent
 
     public function processContract()
     {
-        $this->form->save();
+        $this->form->save($this->boarder);
         $this->closeModal();
         $this->dispatch('refresh-list');
 

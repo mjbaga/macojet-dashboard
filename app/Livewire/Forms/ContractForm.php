@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Forms;
 
+use Livewire\Form;
+use App\Models\Boarder;
 use App\Models\LeaseAgreement;
 use Livewire\Attributes\Validate;
-use Livewire\Form;
+
 
 class ContractForm extends Form
 {
@@ -19,9 +21,9 @@ class ContractForm extends Form
     public bool $includes_city_services;
     public int $months_deposit;
     public float $deposit_amount;
-    public bool $deposit_refunded;
-    public bool $will_renew;
-    public bool $active;
+    public bool $deposit_refunded = false;
+    public bool $will_renew = false;
+    public bool $active = false;
 
     public function rules(): array
     {
@@ -32,7 +34,7 @@ class ContractForm extends Form
             'end_date' => ['required', 'date', 'after:start_date'],
             'agreed_payment' => ['required', 'numeric'],
             'terms_of_payment' => ['required', 'string'],
-            // 'contract_document' => ['mimes:pdf,doc,docx', 'nullable'],
+            'contract_document' => ['mimes:pdf,doc,docx', 'nullable'],
             'includes_city_services' => ['required', 'boolean'],
             'months_deposit' => ['required', 'integer'],
             'deposit_amount' => ['required', 'numeric'],
@@ -42,13 +44,16 @@ class ContractForm extends Form
         ];
     }
 
-    public function save(): void
+    public function save(Boarder $boarder): void
     {
         $this->validate();
-        // dd($this->all());
+        
+        if($this->contract_document) {
+            $this->contract_document->store('contracts', 'private');
+        }
 
         if(!$this->contract) {
-            LeaseAgreement::create($this->all());
+            $boarder->contracts()->create($this->all());
         } else {
             $this->contract->update($this->all());
         }
@@ -63,7 +68,7 @@ class ContractForm extends Form
         $this->end_date = $contract->end_date;
         $this->agreed_payment = $contract->agreed_payment;
         $this->terms_of_payment = $contract->terms_of_payment;
-        // $this->contract_document = $contract->contract_document;
+        $this->contract_document = $contract->contract_document;
         $this->includes_city_services = $contract->includes_city_services;
         $this->months_deposit = $contract->months_deposit;
         $this->deposit_amount = $contract->deposit_amount;
