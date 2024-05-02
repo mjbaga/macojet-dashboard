@@ -121,6 +121,13 @@
 
         <!-- Contract Document -->
         <div>
+            @if ($contract)
+                <button type="button" class="btn btn-secondary mb-4 btn-sm" wire:click="download">
+                    <span>Download</span>
+                    <i class="bi bi-filetype-pdf"></i>
+                </button>
+            @endif
+
             <x-input-label for="contract_document" :value="__('Contract Document')" />
             <input class="mt-1" type="file" id="contract_document" name="contract_document"
                 accept=".doc,.docx,.pdf" wire:model="form.contract_document" />

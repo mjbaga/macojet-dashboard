@@ -7,7 +7,6 @@ use App\Models\Boarder;
 use App\Models\LeaseAgreement;
 use Livewire\Attributes\Validate;
 
-
 class ContractForm extends Form
 {
     public ?LeaseAgreement $contract = null;

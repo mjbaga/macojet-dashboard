@@ -42,6 +42,14 @@ class ContractsModal extends ModalComponent
         
     }
 
+    public function download()
+    {
+        return response()->download( 
+            asset('images/' . $this->contract->contract_document)
+        );
+        // dd(asset('images/' . $this->contract->contract_document));
+    }
+
     public function processContract()
     {
         $this->form->save($this->boarder);
